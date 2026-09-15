@@ -1,0 +1,1984 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DA6021 Examination Handbook</title>
+    <link rel="stylesheet" href="handbook.css">
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+</head>
+
+<body><!-- DA6021 Examination Handbook - Front Matter -->
+
+<div class="cover-page">
+  <p class="course-code">DA6021</p>
+  <h1 class="handbook-title">Deep Learning for Computer Vision</h1>
+  <h2 class="handbook-subtitle">Complete Examination Handbook</h2>
+  <hr class="divider">
+  <div class="handbook-meta">
+    <p><strong>Course Instructor:</strong> Dr. Prashant W. Patil</p>
+    <p><strong>Department:</strong> MFSDSAI, IIT Guwahati</p>
+    <p><strong>Programme:</strong> M.Sc. in Full Stack Data Science & AI</p>
+    <p><strong>Evaluation:</strong> Quiz 10% | Mid-Sem 20% | End-Sem 30% | Group Project 40%</p>
+    <p><strong>Coverage:</strong> Lectures 1-19 (Mid-Semester Examination)</p>
+  </div>
+</div>
+
+<!-- How to Use This Handbook -->
+<h1 id="how-to-use">How to Use This Handbook</h1>
+
+<p>This handbook is designed to serve as a <strong>complete, standalone study resource</strong> for examination preparation. It replaces the need to repeatedly consult the original lecture slides by preserving all examination-relevant content in an organized, searchable, and cross-referenced format.</p>
+
+<h3>Visual Tags & Their Meaning</h3>
+<table>
+  <thead>
+    <tr><th>Tag</th><th>Meaning</th><th>Action</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="tag tag-must-know">Must Know</span></td><td>Essential for exam. Guaranteed to appear.</td><td>Memorize and practice.</td></tr>
+    <tr><td><span class="tag tag-high">High Importance</span></td><td>Very likely to appear in some form.</td><td>Understand thoroughly.</td></tr>
+    <tr><td><span class="tag tag-numerical">Numerical</span></td><td>Can become a numerical problem.</td><td>Practice calculations.</td></tr>
+    <tr><td><span class="tag tag-derivation">Derivation</span></td><td>May be asked to derive.</td><td>Practice writing step-by-step.</td></tr>
+    <tr><td><span class="tag tag-conceptual">Conceptual</span></td><td>Theory/reasoning question likely.</td><td>Understand the "why".</td></tr>
+    <tr><td><span class="tag tag-memorize">Memorize</span></td><td>Must be recalled exactly.</td><td>Write out repeatedly.</td></tr>
+    <tr><td><span class="tag tag-common-mistake">Common Mistake</span></td><td>Frequent student error.</td><td>Read carefully.</td></tr>
+  </tbody>
+</table>
+
+<h3>Block Types</h3>
+<div class="definition">
+  <p class="def-label">Definition</p>
+  <p>Key terms and formal definitions from the course.</p>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">Formula Block</p>
+  <p>All equations with variable definitions, units, and conditions.</p>
+</div>
+
+<div class="exam-tip">
+  <p class="tip-label">Exam Tip</p>
+  <p>Actionable advice for examination performance.</p>
+</div>
+
+<div class="common-mistake">
+  <p class="mistake-label">Common Mistake</p>
+  <p>Errors frequently made by students — avoid these.</p>
+</div>
+
+<h3>Handbook Organization</h3>
+<ul>
+  <li><strong>Part I — Fundamentals:</strong> Computer Vision introduction, Perceptrons, Neural Networks</li>
+  <li><strong>Part II — Core CNN Content:</strong> Convolution operations, Padding, Pooling, Receptive Fields, Computational Complexity</li>
+  <li><strong>Part III — Advanced Topics:</strong> Convolution variants, Upsampling, Architectures, Normalization, Encoder-Decoders</li>
+  <li><strong>Part IV — Formula Handbook:</strong> All equations consolidated</li>
+  <li><strong>Part V — Derivations:</strong> Step-by-step derivation guides</li>
+  <li><strong>Part VI — Numerical Problem Guide:</strong> Solution templates with worked examples</li>
+  <li><strong>Part VII — Visual Reference:</strong> Key figures and their interpretations</li>
+  <li><strong>Part VIII — Tables & Comparisons:</strong> Architecture comparisons, technique comparisons</li>
+  <li><strong>Part IX — Glossary:</strong> Complete terminology reference</li>
+  <li><strong>Part X — Exam Revision:</strong> Last-minute revision checklist</li>
+</ul>
+
+<hr class="section-break">
+
+<!-- Master Topic Map -->
+<h1 id="topic-map">Master Topic Map</h1>
+
+<h3>Lecture Coverage</h3>
+<table>
+  <thead>
+    <tr><th>Lectures</th><th>Topic</th><th>Key Content</th><th>Exam Weight</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>L01–02</td><td>Introduction to Computer Vision</td><td>Paradigms, Applications, Subtasks, Challenges</td><td>Supporting</td></tr>
+    <tr><td>L03–07</td><td>Basics of Neural Networks</td><td>Perceptron, Convergence Proof, Sigmoid, Backpropagation</td><td><span class="tag tag-must-know">Must Know</span></td></tr>
+    <tr><td>L08–09</td><td>Basics of CNNs</td><td>2D Convolution, Padding, Pooling, RF, Parameters, FLOPs</td><td><span class="tag tag-must-know">Must Know</span></td></tr>
+    <tr><td>L10–11</td><td>Types of Convolutions</td><td>Dilated, Depthwise Separable, Transpose, Deformable, Upsampling</td><td><span class="tag tag-high">High</span></td></tr>
+    <tr><td>L12</td><td>CNN Backpropagation</td><td>Forward/Backward pass through CNN layers, Chain Rule</td><td><span class="tag tag-high">High</span></td></tr>
+    <tr><td>L13–14</td><td>State-of-the-Art Architectures I</td><td>LeNet-5, AlexNet, VGG-16, GoogLeNet/Inception</td><td><span class="tag tag-high">High</span></td></tr>
+    <tr><td>L15–16</td><td>State-of-the-Art Architectures II</td><td>ResNet, DenseNet, MobileNet, EfficientNet, Normalization</td><td><span class="tag tag-high">High</span></td></tr>
+    <tr><td>L17–19</td><td>Encoder-Decoder Architectures</td><td>SegNet, U-Net, DeepLabv3+, Semantic Segmentation</td><td><span class="tag tag-must-know">Must Know</span></td></tr>
+  </tbody>
+</table>
+
+<h3>Concept Dependency Chain</h3>
+<p>Understanding flows in this order — each topic builds on the previous:</p>
+<ol>
+  <li><strong>Linear Algebra & Geometry</strong> â†’ Perceptron decision boundaries</li>
+  <li><strong>Perceptron & Convergence</strong> â†’ Why sigmoid neurons and MLPs are needed</li>
+  <li><strong>Gradient Descent & Chain Rule</strong> â†’ Backpropagation algorithm</li>
+  <li><strong>Backpropagation</strong> â†’ Training CNNs end-to-end</li>
+  <li><strong>2D Convolution basics</strong> â†’ Receptive fields â†’ Types of convolutions</li>
+  <li><strong>Vanishing gradients (Backprop issue)</strong> â†’ Normalization techniques â†’ ResNet skip connections</li>
+  <li><strong>Computational complexity</strong> â†’ Efficient architectures (MobileNet, EfficientNet)</li>
+  <li><strong>Convolution &rarr; Pooling (downsampling)</strong> â†’ Spatial information loss â†’ Encoder-Decoder architectures</li>
+  <li><strong>Upsampling techniques</strong> â†’ SegNet (max unpooling), U-Net (skip connections), DeepLab (ASPP)</li>
+</ol>
+<h1>Part I: Foundations of Neural Networks</h1>
+
+<h2>Chapter 1: Introduction to Computer Vision</h2>
+
+<h3>1.1 What is Computer Vision?</h3>
+<p>Computer Vision is a subfield of AI focused on visual understanding. It aims to grant computers the high-level understanding of digital images or videos, much like human vision.</p>
+
+<h3>1.2 Paradigms of Computer Vision</h3>
+<p>There are three core paradigms in understanding computer vision:</p>
+<ul>
+    <li><strong>Physics-based (Image Formation):</strong> Focuses on how light interacts with the world and sensors to form an image.</li>
+    <li><strong>Geometry-based (Image Structure):</strong> Focuses on the spatial structures, shapes, and 3D relationships within images.</li>
+    <li><strong>Learning-based (Perception):</strong> Uses data-driven learning (e.g., neural networks) to recognize and interpret visual concepts.</li>
+</ul>
+
+<h3>1.3 Applications</h3>
+<p>Computer Vision has profound applications across various industries:</p>
+<ul>
+    <li><strong>Surveillance:</strong> Crowd monitoring, anomaly detection.</li>
+    <li><strong>Autonomous Driving:</strong> Lane detection, pedestrian tracking, traffic sign recognition.</li>
+    <li><strong>Traffic Monitoring:</strong> Vehicle counting, speed estimation.</li>
+    <li><strong>Healthcare:</strong> Medical imaging analysis (MRI, X-ray), tumor detection.</li>
+    <li><strong>Agriculture:</strong> Crop monitoring, disease detection.</li>
+    <li><strong>Underwater & Space:</strong> Subsea exploration, satellite imagery analysis.</li>
+    <li><strong>Gaming & Robotics:</strong> Pose estimation, human-computer interaction.</li>
+</ul>
+
+<h3>1.4 Core Subtasks</h3>
+<div class="definition">
+    <span class="def-label">Definition: Core Subtasks</span>
+    <ul>
+        <li><strong>Image Segmentation:</strong> Partitioning an image into multiple segments (pixel-wise classification).</li>
+        <li><strong>Object Detection:</strong> Identifying bounding boxes and classes for multiple objects in an image.</li>
+        <li><strong>Object Recognition:</strong> Identifying the primary object category present in an image.</li>
+        <li><strong>Object Tracking:</strong> Following an object's location across a sequence of video frames.</li>
+        <li><strong>Image Captioning:</strong> Generating a textual description of an image.</li>
+        <li><strong>Super-resolution:</strong> Enhancing the resolution and quality of a low-resolution image.</li>
+        <li><strong>Depth Estimation:</strong> Predicting the distance of objects from the camera viewpoint.</li>
+    </ul>
+</div>
+
+<h3>1.5 What Makes Vision Hard?</h3>
+<div class="important-note">
+    <span class="note-label">Important Note: Challenges</span>
+    Vision is an <em>inverse problem</em>—trying to reconstruct a 3D world from a 2D projection. This is inherently ill-posed. Key challenges include:
+    <ul>
+        <li><strong>Lots of data:</strong> High-resolution images contain millions of pixels.</li>
+        <li><strong>Visual illusions:</strong> Ambiguities in perspective and shading.</li>
+        <li><strong>Viewpoint variation:</strong> Objects look entirely different from different angles.</li>
+        <li><strong>Illumination conditions:</strong> Lighting changes drastically alter pixel values.</li>
+        <li><strong>Deformation:</strong> Non-rigid objects (e.g., animals) change shape.</li>
+        <li><strong>Occlusion:</strong> Objects can be partially hidden.</li>
+        <li><strong>Background clutter:</strong> Objects blending into the environment.</li>
+        <li><strong>Intraclass variation:</strong> High variance within a single class (e.g., different breeds of dogs).</li>
+    </ul>
+</div>
+
+<h3>1.6 Limitations of Artificial Neural Networks (ANNs) for Vision</h3>
+<p>Before Convolutional Neural Networks, standard Feed-Forward ANNs were used, but they had severe limitations for images:</p>
+<ol>
+    <li><strong>Feature extraction and learning:</strong> Real-world data like 256x256 images creates massive fully connected weight matrices (e.g., ~66 Million parameters for a small deep network).</li>
+    <li><strong>Computational Complexity:</strong> Excessive parameter count makes it computationally expensive.</li>
+    <li><strong>Lack of Invariance:</strong> Little or no invariance to shifting, scaling, and other forms of distortion in images (e.g., shifting an object in an image completely alters the input vector).</li>
+</ol>
+
+
+<h2>Chapter 2: Perceptron & McCulloch-Pitts Neuron</h2>
+
+<h3>2.1 Definitions and Concepts</h3>
+<div class="definition">
+    <span class="def-label">Definition: Perceptron</span>
+    The simplest type of artificial neural network and a fundamental building block of deep learning. Introduced by Frank Rosenblatt in 1958, it is a binary classifier that learns to separate data into two classes using a linear decision boundary.
+</div>
+
+<div class="formula-block">
+    <div class="formula-name">Mathematical Model of MP Neuron</div>
+    <div class="formula-equation">
+        \[ y = 1 \text{ if } \sum_{i=1}^{n} x_i \ge \theta, \text{ else } 0 \text{ if } \sum_{i=1}^{n} x_i < \theta \]
+    </div>
+</div>
+
+<div class="formula-block">
+    <div class="formula-name">Mathematical Model of Perceptron</div>
+    <div class="formula-equation">
+        \[ y = 1 \text{ if } \sum_{i=1}^{n} w_i \cdot x_i \ge \theta, \text{ else } 0 \text{ if } \sum_{i=1}^{n} w_i \cdot x_i < \theta \]
+    </div>
+    <p>Rewriting this by moving the threshold to the left side:</p>
+    <div class="formula-equation">
+        \[ y = 1 \text{ if } \sum_{i=1}^{n} w_i \cdot x_i - \theta \ge 0, \text{ else } 0 \]
+    </div>
+    <p>Precise representation: Let \( w_0 = -\theta \) (bias term) and \( x_0 = 1 \). Then:</p>
+    <div class="formula-equation">
+        \[ y = 1 \text{ if } \sum_{i=0}^{n} w_i \cdot x_i \ge 0, \text{ else } 0 \text{ if } \sum_{i=0}^{n} w_i \cdot x_i < 0 \]
+    </div>
+</div>
+
+<div class="important-note">
+    <span class="note-label">Important Note: MP Neuron vs Perceptron</span>
+    Both separate the input space into two halves and can only implement linearly separable functions. However, in a Perceptron, weights and thresholds can be learned, and inputs can be real-valued, whereas the MP neuron uses fixed weights and binary inputs.
+</div>
+
+<h3>2.2 Visual Descriptions</h3>
+<ul>
+    <li><strong>Perceptron Model:</strong> A node \( y \) receiving inputs \( x_1, x_2, \dots, x_n \) weighted by \( w_1, w_2, \dots, w_n \).</li>
+    <li><strong>Boolean Function Space:</strong> A 2D coordinate space \( (x_1, x_2) \) with points (0,0), (1,0), (0,1), (1,1).</li>
+    <li><strong>Decision Boundary:</strong> A linear separation line splitting the plane into positive and negative half-spaces.</li>
+</ul>
+
+<div class="figure-container">
+    <p class="figure-caption">Figure 2.1: Perceptron Boolean space and decision boundary.</p>
+    <img src="images/L03_p010.png" alt="Perceptron Decision Boundary" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+</div>
+
+<h3>2.3 Worked Example: Boolean Function (OR) with Perceptron</h3>
+<div class="example-block">
+    <span class="example-label">Example: Implementing the OR function</span>
+    <p><strong>Truth Table Analysis:</strong></p>
+    <ul>
+        <li>(0,0) &rarr; 0 &rArr; \( w_0 + w_1 \cdot 0 + w_2 \cdot 0 < 0 \implies w_0 < 0 \)</li>
+        <li>(1,0) &rarr; 1 &rArr; \( w_0 + w_1 \cdot 1 + w_2 \cdot 0 \ge 0 \implies w_1 \ge -w_0 \)</li>
+        <li>(0,1) &rarr; 1 &rArr; \( w_0 + w_1 \cdot 0 + w_2 \cdot 1 \ge 0 \implies w_2 \ge -w_0 \)</li>
+        <li>(1,1) &rarr; 1 &rArr; \( w_0 + w_1 \cdot 1 + w_2 \cdot 1 \ge 0 \implies w_1 + w_2 \ge -w_0 \)</li>
+    </ul>
+    <p><strong>Possible Solution:</strong> Let \( w_0 = -1, w_1 = 1.1, w_2 = 1.1 \).</p>
+    <p>Line equation: \( -1 + 1.1x_1 + 1.1x_2 = 0 \).</p>
+</div>
+
+<div class="worked-solution">
+    <span class="solution-label">Error Surfaces Cases</span>
+    <div class="step"><span class="step-number">Case 1:</span> \( w_0 = -1, w_1 = 1.1, w_2 = 1.1 \) (Zero error, valid separation).</div>
+    <div class="step"><span class="step-number">Case 2:</span> \( w_0 = -1, w_1 = -1, w_2 = -1 \) (Line: \( -1 - x_1 - x_2 = 0 \)). Incorrect.</div>
+    <div class="step"><span class="step-number">Case 3:</span> \( w_0 = -1, w_1 = 1.5, w_2 = 0 \) (Line: \( -1 + 1.5x_1 + 0x_2 = 0 \)). Incorrect.</div>
+    <div class="step"><span class="step-number">Case 4:</span> \( w_0 = -1, w_1 = 0.45, w_2 = 0.45 \) (Line: \( -1 + 0.45x_1 + 0.45x_2 = 0 \)). Incorrect.</div>
+</div>
+
+
+<h2>Chapter 3: Perceptron Learning Algorithm</h2>
+
+<h3>3.1 Objectives and Geometry</h3>
+<p><strong>Objective:</strong> Find the line \( \mathbf{w}^T\mathbf{x} = 0 \) dividing the input space into two halves. The angle \( \alpha \) between \( \mathbf{w} \) and any point \( \mathbf{x} \) on the line is 90&deg; (\( \cos\alpha = \frac{\mathbf{w}^T\mathbf{x}}{|\mathbf{w}||\mathbf{x}|} = 0 \)).</p>
+<ul>
+    <li>For points in the positive half space (\( \mathbf{w}^T\mathbf{x} \ge 0 \)), the angle with \( \mathbf{w} \) is \( \le 90^\circ \).</li>
+    <li>For points in the negative half space (\( \mathbf{w}^T\mathbf{x} < 0 \)), the angle with \( \mathbf{w} \) is \( > 90^\circ \).</li>
+</ul>
+
+<h3>3.2 Algorithm Formulation</h3>
+<div class="definition">
+    <span class="def-label">Perceptron Learning Algorithm</span>
+    Let P = inputs with label 1; N = inputs with label 0.<br>
+    Initialize \( \mathbf{w} \) randomly.<br>
+    <strong>while</strong> !convergence <strong>do</strong><br>
+    &nbsp;&nbsp;Pick random \( \mathbf{x} \in P \cup N \);<br>
+    &nbsp;&nbsp;<strong>if</strong> \( \mathbf{x} \in P \) and \( \sum_{i=0}^{n} w_i \cdot x_i < 0 \) <strong>then</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;\( \mathbf{w}_{new} = \mathbf{w}_{old} + \mathbf{x} \);<br>
+    &nbsp;&nbsp;<strong>end if</strong><br>
+    &nbsp;&nbsp;<strong>if</strong> \( \mathbf{x} \in N \) and \( \sum_{i=0}^{n} w_i \cdot x_i \ge 0 \) <strong>then</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;\( \mathbf{w}_{new} = \mathbf{w}_{old} - \mathbf{x} \);<br>
+    &nbsp;&nbsp;<strong>end if</strong><br>
+    <strong>end while</strong><br>
+    (Algorithm converges when all inputs are classified correctly).
+</div>
+
+<h3>3.3 Derivations & Justifications</h3>
+<p><strong>Correction for False Negatives:</strong> If \( \mathbf{x} \in P \) but \( \mathbf{w}^T\mathbf{x} < 0 \) (angle \( \alpha > 90^\circ \)). We want it to be \( < 90^\circ \).</p>
+<div class="formula-block">
+    <div class="formula-equation">
+        \[ \cos\alpha_{new} \propto (\mathbf{w}_{new})^T\mathbf{x} \propto (\mathbf{w}_{old} + \mathbf{x})^T\mathbf{x} \propto \mathbf{w}^T\mathbf{x} + \mathbf{x}^T\mathbf{x} \propto \cos\alpha + \mathbf{x}^T\mathbf{x} \]
+    </div>
+    <p>Thus, \( \cos\alpha_{new} > \cos\alpha \implies \alpha_{new} < \alpha \).</p>
+</div>
+
+<p><strong>Correction for False Positives:</strong> If \( \mathbf{x} \in N \) but \( \mathbf{w}^T\mathbf{x} \ge 0 \) (angle \( \alpha < 90^\circ \)). We want it to be \( > 90^\circ \).</p>
+<div class="formula-block">
+    <div class="formula-equation">
+        \[ \cos\alpha_{new} \propto (\mathbf{w}_{new})^T\mathbf{x} \propto (\mathbf{w}_{old} - \mathbf{x})^T\mathbf{x} \propto \mathbf{w}^T\mathbf{x} - \mathbf{x}^T\mathbf{x} \propto \cos\alpha - \mathbf{x}^T\mathbf{x} \]
+    </div>
+    <p>Thus, \( \cos\alpha_{new} < \cos\alpha \implies \alpha_{new} > \alpha \).</p>
+</div>
+
+<h3>3.4 Proof of Perceptron Convergence</h3>
+<p><strong>Proposition:</strong> If sets \( P \) and \( N \) are finite and linearly separable, the algorithm updates \( \mathbf{w} \) a finite number of times (converges in finite steps \( k \)).</p>
+<p><strong>Definition:</strong> Linearly separable if \( \exists \mathbf{w}^* \) s.t. \( \mathbf{w}^{*T}\mathbf{x} \ge 0 \;\forall \mathbf{x} \in P \) and \( \mathbf{w}^{*T}\mathbf{x} < 0 \;\forall \mathbf{x} \in N \).</p>
+<div class="worked-solution">
+    <span class="solution-label">Proof Steps</span>
+    <div class="step"><span class="step-number">Setup 1:</span> Normalize all vectors \( p \). Let \( \mathbf{w}^* \) be the normalized solution vector.</div>
+    <div class="step"><span class="step-number">Setup 2:</span> If \( x \in N \), let \( p = -x \in P \) (since \( \mathbf{w}^T x < 0 \implies \mathbf{w}^T(-x) \ge 0 \)). Create a single set \( P' = P \cup N^- \). Ensure \( \mathbf{w}^Tp \ge 0 \; \forall p \in P' \).</div>
+    <div class="step"><span class="step-number">Setup 3:</span> Update rule becomes: Pick \( p \in P' \), if \( \mathbf{w}^Tp < 0 \), \( \mathbf{w}_{t+1} = \mathbf{w}_t + p \).</div>
+    <div class="step"><span class="step-number">Proof Body:</span> Let \( \beta \) be angle between \( \mathbf{w}^* \) and \( \mathbf{w}_{t+1} \): \( \cos\beta = \frac{\mathbf{w}^* \cdot \mathbf{w}_{t+1}}{|\mathbf{w}_{t+1}|} \).</div>
+    <div class="step"><span class="step-number">Numerator:</span>
+        \( \mathbf{w}^* \cdot \mathbf{w}_{t+1} = \mathbf{w}^* \cdot (\mathbf{w}_t + p_i) = \mathbf{w}^* \cdot \mathbf{w}_t + \mathbf{w}^* \cdot p_i \ge \mathbf{w}^* \cdot \mathbf{w}_t + \delta \) (where \( \delta = \min \mathbf{w}^* \cdot p_i \; \forall i \)).<br>
+        After \( k \) corrections: Numerator \( \ge \mathbf{w}^* \cdot \mathbf{w}_0 + k\delta \).
+    </div>
+    <div class="step"><span class="step-number">Denominator:</span>
+        \( |\mathbf{w}_{t+1}|^2 = (\mathbf{w}_t + p_i) \cdot (\mathbf{w}_t + p_i) = |\mathbf{w}_t|^2 + 2\mathbf{w}_t \cdot p_i + |p_i|^2 \).<br>
+        Since an error occurred, \( \mathbf{w}_t \cdot p_i \le 0 \). Since normalized, \( |p_i|^2 = 1 \).<br>
+        \( |\mathbf{w}_{t+1}|^2 \le |\mathbf{w}_t|^2 + 1 \).<br>
+        After \( k \) corrections: Denominator\(^2 \le |\mathbf{w}_0|^2 + k \).
+    </div>
+    <div class="step"><span class="step-number">Conclusion:</span>
+        \( \cos\beta \ge \frac{\mathbf{w}^* \cdot \mathbf{w}_0 + k\delta}{\sqrt{|\mathbf{w}_0|^2 + k}} \).<br>
+        This grows proportional to \( \sqrt{k} \). Since \( \cos\beta \le 1 \), \( k \) must be bounded by a maximum number. Thus, finite number of corrections.
+    </div>
+</div>
+
+
+<h2>Chapter 4: Network of Perceptrons & Non-Linear Functions</h2>
+
+<h3>4.1 The XOR Contradiction</h3>
+<p>A single perceptron cannot implement non-linearly separable functions like XOR.</p>
+<div class="common-mistake">
+    <span class="mistake-label">XOR Contradiction</span>
+    For XOR, we require:
+    <ol>
+        <li>(0,0) &rarr; 0 &rArr; \( w_0 < 0 \)</li>
+        <li>(1,0) &rarr; 1 &rArr; \( w_1 \ge -w_0 \)</li>
+        <li>(0,1) &rarr; 1 &rArr; \( w_2 \ge -w_0 \)</li>
+        <li>(1,1) &rarr; 0 &rArr; \( w_1 + w_2 < -w_0 \)</li>
+    </ol>
+    However, adding equations 2 and 3 yields \( w_1 + w_2 \ge -2w_0 \), which directly contradicts equation 4 since \( -2w_0 > -w_0 \) for \( w_0 < 0 \).
+</div>
+
+<h3>4.2 Multilayer Perceptrons (MLP)</h3>
+<div class="definition">
+    <span class="def-label">Definition: Multilayer Perceptron (MLP)</span>
+    A network containing an input layer, one or more hidden layers, and an output layer.
+</div>
+<div class="important-note">
+    <span class="note-label">Theorem: Boolean Function Capacity</span>
+    For \( n \) inputs, there are \( 2^{2^n} \) possible boolean functions. A network of perceptrons with 1 hidden layer containing \( 2^n \) perceptrons and 1 output perceptron can represent exactly ANY Boolean function of \( n \) inputs. (\( 2^n+1 \) perceptrons is sufficient, though not strictly necessary).
+</div>
+
+<h3>4.3 Worked Example: XOR with MLP</h3>
+<div class="example-block">
+    <span class="example-label">Example: Solving XOR</span>
+    <ul>
+        <li><strong>Inputs:</strong> 2 Inputs (\( x_1, x_2 \)). True = &rarr;1, False = -1.</li>
+        <li><strong>Hidden Layer:</strong> 4 Hidden Perceptrons (\( h_1, \dots, h_4 \)). Bias for all \( w_0 = -2 \) (fires if sum \( \ge 2 \)).</li>
+        <li><strong>Hidden Nodes:</strong> Weights corresponding to 4 input states: (-1,-1), (-1,1), (1,-1), (1,1). Acting as AND gates.</li>
+        <li><strong>Output Layer:</strong> Bias \( w_0 = -2 \). Fires if \( \sum w_i h_i \ge w_0 \).</li>
+        <li><strong>Output Weights:</strong> To get XOR output (0, 1, 1, 0), the output weights must satisfy:
+        \( w_1 < w_0 \), \( w_2 \ge w_0 \), \( w_3 \ge w_0 \), \( w_4 < w_0 \).</li>
+    </ul>
+</div>
+
+
+<h2>Chapter 5: Sigmoid Neuron & Feed-Forward Neural Networks</h2>
+
+<h3>5.1 The Sigmoid Neuron</h3>
+<p><strong>Why Sigmoid?</strong> The Perceptron step-function threshold is too harsh (e.g., rating 0.51 passes, 0.49 fails). The Sigmoid provides smooth, continuous, and differentiable transitions. Output is a real value \( (0,1) \) interpreted as probability.</p>
+
+<div class="formula-block">
+    <div class="formula-name">Sigmoid / Logistic Function</div>
+    <div class="formula-equation">
+        \[ y = \frac{1}{1 + \exp(-z)} \]
+    </div>
+    <div class="formula-where">Where pre-activation \( z = \sum_{i=1}^n w_i x_i + w_0 \).</div>
+</div>
+
+<h3>5.2 Supervised Learning Setup</h3>
+<ul>
+    <li><strong>Data:</strong> \( \{x_i, y_i\}_{i=1}^n \)</li>
+    <li><strong>Model:</strong> \( \hat{y} = \frac{1}{1 + e^{-\mathbf{w}^Tx}} \)</li>
+    <li><strong>Parameters:</strong> \( \mathbf{w} \)</li>
+    <li><strong>Loss Function (MSE):</strong> \( \mathcal{L}(\mathbf{w}) = \frac{1}{N} \sum_{i=1}^n (\hat{y}_i - y_i)^2 \)</li>
+    <li><strong>Algorithm:</strong> Gradient Descent.</li>
+</ul>
+
+<h3>5.3 Feed-Forward Neural Networks</h3>
+<p>Connections do not form cycles; data flows strictly from input to output.</p>
+<ul>
+    <li><strong>Layers:</strong> Input layer (\( 0^{th} \) layer), Hidden layers \( 1 \) to \( L-1 \), Output layer (\( L^{th} \) layer).</li>
+    <li><strong>Pre-activation:</strong> \( \mathbf{a}_i = \mathbf{W}_i \mathbf{h}_{i-1} + \mathbf{b}_i \)</li>
+    <li><strong>Post-activation:</strong> \( \mathbf{h}_i = g(\mathbf{a}_i) \) (\( g \) = activation function like sigmoid, tanh, ReLU).</li>
+    <li><strong>Output:</strong> \( f(\mathbf{x}) = \mathbf{h}_L = O(\mathbf{a}_L) \) (\( O \) = output activation like Softmax).</li>
+</ul>
+
+<div class="formula-block">
+    <div class="formula-name">Gradient Descent Formula</div>
+    <div class="formula-equation">
+        \[ \theta_{t+1} = \theta_t - \eta \nabla\theta_t \]
+    </div>
+    <div class="formula-where">Where \( \theta = [\mathbf{W}_1, \dots, \mathbf{W}_L, \mathbf{b}_1, \dots, \mathbf{b}_L]^T \) and \( \nabla\theta_t = \left[ \frac{\partial \mathcal{L}}{\partial \mathbf{W}_1}, \dots, \frac{\partial \mathcal{L}}{\partial \mathbf{b}_L} \right]^T \).</div>
+</div>
+
+
+<h2>Chapter 6: Backpropagation</h2>
+
+<h3>6.1 Worked Example: Forward & Backward Pass</h3>
+<div class="example-block">
+    <span class="example-label">Network Setup</span>
+    <ul>
+        <li><strong>Inputs:</strong> \( i_1 = 0.05, i_2 = 0.10 \). Target Outputs: \( t_1 = 0.01, t_2 = 0.99 \).</li>
+        <li><strong>Architecture:</strong> 1 Hidden Layer (2 neurons, \( h_1, h_2 \)), 1 Output Layer (2 neurons, \( o_1, o_2 \)).</li>
+        <li><strong>Initial Weights (Input &rarr; Hidden):</strong> \( w_1=0.15, w_2=0.25, w_3=0.20, w_4=0.30 \).</li>
+        <li><strong>Initial Weights (Hidden &rarr; Output):</strong> \( w_5=0.40, w_6=0.45, w_7=0.50, w_8=0.55 \).</li>
+        <li><strong>Initial Biases:</strong> \( b_1=0.35 \) (Hidden), \( b_2=0.60 \) (Output).</li>
+    </ul>
+</div>
+
+<div class="worked-solution">
+    <span class="solution-label">Step-by-step Solution</span>
+    
+    <div class="step"><span class="step-number">Forward Pass:</span>
+        <br>\( net_{h1} = w_1 i_1 + w_3 i_2 + b_1 = 0.15(0.05) + 0.20(0.10) + 0.35 = 0.3775 \)
+        <br>\( out_{h1} = \sigma(net_{h1}) = 1 / (1 + e^{-0.3775}) = 0.5933 \)
+        <br>\( net_{h2} = 0.3975 \implies out_{h2} = 0.5981 \)
+        <br>\( net_{o1} = w_5 out_{h1} + w_7 out_{h2} + b_2 = 0.40(0.5933) + 0.50(0.5981) + 0.60 = 1.1364 \)
+        <br>\( out_{o1} = \sigma(net_{o1}) = 0.7570 \)
+        <br>\( net_{o2} = 1.1959 \implies out_{o2} = 0.7678 \)
+    </div>
+
+    <div class="step"><span class="step-number">Error Calculation:</span>
+        <br>\( E_{total} = \frac{1}{2} \sum (t_i - out_i)^2 = E_{o1} + E_{o2} \)
+        <br>\( E_{o1} = \frac{1}{2}(0.01 - 0.7570)^2 = 0.2790 \)
+        <br>\( E_{o2} = \frac{1}{2}(0.99 - 0.7678)^2 = 0.0247 \)
+        <br>\( E_{total} = 0.3037 \)
+    </div>
+
+    <div class="step"><span class="step-number">Backward Pass (Output Layer Update for \( w_5 \)):</span>
+        <br>Chain Rule: \( \frac{\partial E_{total}}{\partial w_5} = \frac{\partial E_{total}}{\partial out_{o1}} \cdot \frac{\partial out_{o1}}{\partial net_{o1}} \cdot \frac{\partial net_{o1}}{\partial w_5} \)
+        <br>\( \frac{\partial E_{total}}{\partial out_{o1}} = -(t_1 - out_{o1}) = -(0.01 - 0.7570) = 0.7470 \)
+        <br>\( \frac{\partial out_{o1}}{\partial net_{o1}} = out_{o1}(1 - out_{o1}) = 0.7570(1 - 0.7570) = 0.1839 \)
+        <br>\( \frac{\partial net_{o1}}{\partial w_5} = out_{h1} = 0.5933 \)
+        <br>\( \frac{\partial E_{total}}{\partial w_5} = 0.7470 \times 0.1839 \times 0.5933 = 0.0815 \)
+        <br>Update (Learning Rate \( \eta=0.5 \)): \( w_5^{new} = w_5 - \eta \frac{\partial E_{total}}{\partial w_5} = 0.40 - 0.5(0.0815) = 0.3592 \)
+        <br>Similarly: \( w_6^{new}=0.4617 \), \( w_7^{new}=0.4589 \), \( w_8^{new}=0.5618 \).
+        <br>Bias updates: \( \frac{\partial net_{o1}}{\partial b_{21}} = 1 \). \( \frac{\partial E}{\partial b_{21}} = 0.7470 \times 0.1839 \times 1 = 0.1374 \implies b_{21}^{new} = 0.5313 \). \( b_{22}^{new} = 0.6197 \).
+    </div>
+
+    <div class="step"><span class="step-number">Backward Pass (Hidden Layer Update for \( w_1 \)):</span>
+        <br>\( \frac{\partial E_{total}}{\partial w_1} = \frac{\partial E_{total}}{\partial out_{h1}} \cdot \frac{\partial out_{h1}}{\partial net_{h1}} \cdot \frac{\partial net_{h1}}{\partial w_1} \)
+        <br>\( \frac{\partial E_{total}}{\partial out_{h1}} = \frac{\partial E_{o1}}{\partial out_{h1}} + \frac{\partial E_{o2}}{\partial out_{h1}} = \left( \frac{\partial E_{o1}}{\partial net_{o1}}\frac{\partial net_{o1}}{\partial out_{h1}} \right) + \left( \frac{\partial E_{o2}}{\partial net_{o2}}\frac{\partial net_{o2}}{\partial out_{h1}} \right) \)
+        <br>Component 1: \( \frac{\partial E_{o1}}{\partial net_{o1}} = 0.1374 \). \( \frac{\partial net_{o1}}{\partial out_{h1}} = w_5 = 0.40 \). Product = \( 0.05496 \).
+        <br>Component 2: \( \frac{\partial E_{o2}}{\partial net_{o2}} = -0.0396 \). \( \frac{\partial net_{o2}}{\partial out_{h1}} = w_6 = 0.45 \). Product = \( -0.01782 \).
+        <br>\( \frac{\partial E_{total}}{\partial out_{h1}} = 0.05496 - 0.01782 = 0.0371 \).
+        <br>\( \frac{\partial out_{h1}}{\partial net_{h1}} = out_{h1}(1 - out_{h1}) = 0.2413 \).
+        <br>\( \frac{\partial net_{h1}}{\partial w_1} = i_1 = 0.05 \).
+        <br>\( \frac{\partial E_{total}}{\partial w_1} = 0.0371 \times 0.2413 \times 0.05 = 0.00045 \).
+        <br>Update: \( w_1^{new} = 0.15 - 0.5(0.00045) = 0.1497 \).
+    </div>
+</div>
+
+<h3>6.2 General Formulas & Derivations</h3>
+<ul>
+    <li><strong>Gradients w.r.t Output Units (Cross Entropy &rarr; Softmax):</strong>
+        <br>Loss \( \mathcal{L}(\theta) = -\log(\hat{y}_l) \) where \( l \) is true class.
+        <br>\( \frac{\partial \mathcal{L}}{\partial \hat{y}_i} = -1/\hat{y}_l \) if \( i=l \) else \( 0 \). Vector form: \( \nabla_{\hat{y}} \mathcal{L} = -\frac{1}{\hat{y}_l} \mathbf{e}^{(l)} \).
+        <br>\( \frac{\partial \mathcal{L}}{\partial a_L^i} = -(1_{l=i} - \hat{y}_i) \). Vector form: \( \nabla_{\mathbf{a}_L} \mathcal{L} = -(\mathbf{e}_l - \hat{y}) \).
+    </li>
+    <li><strong>Gradients w.r.t Hidden Units:</strong>
+        <br>\( \frac{\partial \mathcal{L}}{\partial h_{i,j}} = \sum_{m} \frac{\partial \mathcal{L}}{\partial a_{i+1,m}} \frac{\partial a_{i+1,m}}{\partial h_{i,j}} = \sum_{m} \frac{\partial \mathcal{L}}{\partial a_{i+1,m}} W_{i+1,m,j} \)
+        <br>Vector form: \( \nabla_{\mathbf{h}_i} \mathcal{L} = \mathbf{W}_{i+1}^T \nabla_{\mathbf{a}_{i+1}} \mathcal{L} \).
+        <br>\( \nabla_{\mathbf{a}_i} \mathcal{L} = \nabla_{\mathbf{h}_i} \mathcal{L} \odot g'(\mathbf{a}_i) \).
+    </li>
+    <li><strong>Gradients w.r.t Parameters:</strong>
+        <br>\( \frac{\partial \mathcal{L}}{\partial \mathbf{W}_k} = \nabla_{\mathbf{a}_k} \mathcal{L} \cdot \mathbf{h}_{k-1}^T \).
+        <br>\( \frac{\partial \mathcal{L}}{\partial \mathbf{b}_k} = \nabla_{\mathbf{a}_k} \mathcal{L} \).
+    </li>
+</ul>
+
+<h1>Part II: Convolutional Neural Networks</h1>
+
+<h2>Chapter 7: Basics of CNNs</h2>
+
+<h3>7.1 Fundamental Purpose & Principles</h3>
+<p>The fundamental purpose of performing convolution is to extract useful, representative, and hierarchical spatial features from the input tensor. Unlike classical vision with hand-engineered filters, CNN filter weights are learnable parameters optimized end-to-end.</p>
+
+<h3>7.2 2D Convolution Operation</h3>
+<div class="formula-block">
+    <div class="formula-name">2D Convolution Equation</div>
+    <div class="formula-equation">
+        \[ y(i, j) = \sum_{m=0}^{K_h-1} \sum_{n=0}^{K_w-1} x(i+m, j+n) \cdot w(m, n) + b \]
+    </div>
+</div>
+<div class="exam-tip">
+    <span class="tip-label">The Full Depth Rule</span>
+    Filters always extend the full depth of the input volume. If the input has depth \( C_{in} \), a 2D convolution filter MUST have depth equal to \( C_{in} \). E.g., a \( 5 \times 5 \) filter on an RGB image (\( C_{in} = 3 \)) has \( 5 \times 5 \times 3 = 75 \) spatial-channel weights.
+</div>
+
+<h3>7.3 Spatial Information Loss & Padding</h3>
+<p>Without padding, feature maps shrink by \( (K - 1) \) pixels per layer, and boundary pixels are under-represented. Padding introduces a border to preserve dimensions.</p>
+<ul>
+    <li><strong>Zero Padding:</strong> Filled with zeros. Can create artificial black edges.</li>
+    <li><strong>Replicate Padding:</strong> Border pixels replicated outward. Avoids harsh intensity drops.</li>
+</ul>
+
+<div class="formula-block">
+    <div class="formula-name">Same Padding Formula</div>
+    <div class="formula-equation">
+        \[ P = \frac{K - 1}{2} \]
+    </div>
+    <div class="formula-where">Where \( K \) is the odd-sized kernel. Ensures output size equals input size when stride \( S = 1 \).</div>
+</div>
+
+<h3>7.4 Output Dimension & Parameter Formulas</h3>
+<div class="formula-block">
+    <div class="formula-name">General Output Dimensions</div>
+    <div class="formula-equation">
+        \[ W_{out} = \left\lfloor \frac{W_{in} - K + 2P}{S} \right\rfloor + 1 \]
+        \[ H_{out} = \left\lfloor \frac{H_{in} - K + 2P}{S} \right\rfloor + 1 \]
+        \[ C_{out} = F \]
+    </div>
+    <div class="formula-where">Where \( F \) is the number of filters.</div>
+</div>
+
+<div class="formula-block">
+    <div class="formula-name">Learnable Parameters</div>
+    <div class="formula-equation">
+        \[ \text{Params per Filter} = K \times K \times C_{in} + 1 \]
+        \[ \text{Total Parameters} = \left(K \times K \times C_{in} + 1\right) \times C_{out} \]
+    </div>
+</div>
+
+<h3>7.5 Pooling Operations</h3>
+<p>Pooling downsamples spatial dimensions independently per channel. Pooling layers have <strong>0 learnable parameters</strong>.</p>
+<div class="example-block">
+    <span class="example-label">Max vs Average Pooling Example (2x2, Stride 2)</span>
+    <p>Given a \( 4 \times 4 \) matrix:</p>
+    \[
+    X = \begin{bmatrix}
+    8 & 7 & 5 & 3 \\
+    12 & 9 & 5 & 7 \\
+    13 & 2 & 10 & 3 \\
+    9 & 4 & 5 & 14
+    \end{bmatrix}
+    \]
+    <p><strong>Max Pooling:</strong> Extracts the max from each \( 2 \times 2 \) quadrant.</p>
+    \[
+    Y_{Max} = \begin{bmatrix} 12 & 7 \\ 13 & 14 \end{bmatrix}
+    \]
+    <p><strong>Average Pooling:</strong> Computes the mean for each quadrant.</p>
+    \[
+    Y_{Avg} = \begin{bmatrix} 9 & 5 \\ 7 & 8 \end{bmatrix}
+    \]
+</div>
+
+
+<h2>Chapter 8: Receptive Fields</h2>
+
+<h3>8.1 Definition</h3>
+<div class="definition">
+    <span class="def-label">Definition: Receptive Field</span>
+    The specific spatial region of the <em>original input image</em> that can directly or indirectly influence a given neuron's activation value.
+</div>
+
+<div class="formula-block">
+    <div class="formula-name">Recursive Receptive Field Formulas</div>
+    <div class="formula-equation">
+        \[ R_l = R_{l-1} + (K_l - 1) \cdot j_{l-1} \]
+        \[ j_l = j_{l-1} \cdot S_l \]
+    </div>
+    <div class="formula-where">\( R_l \): Receptive field size at layer \( l \). \( j_l \): Effective jump/stride at layer \( l \). Base conditions: \( R_0 = 1, j_0 = 1 \).</div>
+</div>
+
+<h3>8.2 Worked Examples</h3>
+
+<div class="worked-solution">
+    <span class="solution-label">Example 1: 4 Conv Layers, Stride 1 (Linear Growth)</span>
+    <div class="step"><span class="step-number">Initial:</span> \( R_0 = 1, j_0 = 1 \)</div>
+    <div class="step"><span class="step-number">Layer 1 (\( K=3, S=1 \)):</span> \( RF_1 = 1 + (3 - 1) \times 1 = 3 \). \( j_1 = 1 \times 1 = 1 \).</div>
+    <div class="step"><span class="step-number">Layer 2 (\( K=3, S=1 \)):</span> \( RF_2 = 3 + (3 - 1) \times 1 = 5 \). \( j_2 = 1 \times 1 = 1 \).</div>
+    <div class="step"><span class="step-number">Layer 3 (\( K=3, S=1 \)):</span> \( RF_3 = 5 + 2 = 7 \). \( j_3 = 1 \).</div>
+    <div class="step"><span class="step-number">Layer 4 (\( K=3, S=1 \)):</span> \( RF_4 = 7 + 2 = 9 \). \( j_4 = 1 \).</div>
+    <div class="answer">Final RF: \( 9 \times 9 \)</div>
+</div>
+
+<div class="worked-solution">
+    <span class="solution-label">Example 2: 4 Conv Layers, Stride 2 (Exponential Growth)</span>
+    <div class="step"><span class="step-number">Initial:</span> \( R_0 = 1, j_0 = 1 \)</div>
+    <div class="step"><span class="step-number">Layer 1 (\( K=3, S=2 \)):</span> \( RF_1 = 1 + 2 \times 1 = 3 \). \( j_1 = 1 \times 2 = 2 \).</div>
+    <div class="step"><span class="step-number">Layer 2 (\( K=3, S=2 \)):</span> \( RF_2 = 3 + 2 \times 2 = 7 \). \( j_2 = 2 \times 2 = 4 \).</div>
+    <div class="step"><span class="step-number">Layer 3 (\( K=3, S=2 \)):</span> \( RF_3 = 7 + 2 \times 4 = 15 \). \( j_3 = 4 \times 2 = 8 \).</div>
+    <div class="step"><span class="step-number">Layer 4 (\( K=3, S=2 \)):</span> \( RF_4 = 15 + 2 \times 8 = 31 \). \( j_4 = 8 \times 2 = 16 \).</div>
+    <div class="answer">Final RF: \( 31 \times 31 \)</div>
+</div>
+
+<div class="worked-solution">
+    <span class="solution-label">Example 3: 4 Conv Blocks (Conv S=1 followed by MaxPool S=2)</span>
+    <div class="step"><span class="step-number">Initial:</span> \( R_0 = 1, j_0 = 1 \)</div>
+    <div class="step"><span class="step-number">Block 1:</span>
+        <br>Conv1 (\( K=3, S=1 \)): \( RF = 1 + 2(1) = 3 \). \( j = 1 \).
+        <br>Pool1 (\( K=2, S=2 \)): \( RF = 3 + 1(1) = 4 \). \( j = 1 \times 2 = 2 \).
+    </div>
+    <div class="step"><span class="step-number">Block 2:</span>
+        <br>Conv2 (\( K=3, S=1 \)): \( RF = 4 + 2(2) = 8 \). \( j = 2 \).
+        <br>Pool2 (\( K=2, S=2 \)): \( RF = 8 + 1(2) = 10 \). \( j = 4 \).
+    </div>
+    <div class="step"><span class="step-number">Block 3:</span>
+        <br>Conv3 (\( K=3, S=1 \)): \( RF = 10 + 2(4) = 18 \). \( j = 4 \).
+        <br>Pool3 (\( K=2, S=2 \)): \( RF = 18 + 1(4) = 22 \). \( j = 8 \).
+    </div>
+    <div class="step"><span class="step-number">Block 4:</span>
+        <br>Conv4 (\( K=3, S=1 \)): \( RF = 22 + 2(8) = 38 \). \( j = 8 \).
+        <br>Pool4 (\( K=2, S=2 \)): \( RF = 38 + 1(8) = 46 \). \( j = 16 \).
+    </div>
+    <div class="answer">Final RF: \( 46 \times 46 \)</div>
+</div>
+
+
+<h2>Chapter 9: Computational Complexity</h2>
+
+<h3>9.1 Micro-Analysis of FLOPs</h3>
+<p>1 multiplication = 1 FLOP, 1 addition = 1 FLOP. Thus, an operation \( a \cdot w + b \) evaluates to 2 FLOPs.</p>
+
+<div class="formula-block">
+    <div class="formula-name">General FLOPs Mathematical Formulas</div>
+    <div class="formula-equation">
+        \[ \text{FLOPs}_{\text{Conv}} = H_{out} \times W_{out} \times C_{out} \times \left(2 \times k_h \times k_w \times C_{in}\right) \]
+        \[ \text{FLOPs}_{\text{FC}} = 2 \times N_{in} \times N_{out} \]
+    </div>
+</div>
+
+<h3>9.2 Macro-Architecture Parameter & FLOPs Accounting</h3>
+<p>Consider a network with Input (\( 32 \times 32 \times 3 \)), Conv1 (\( K=3, 32 \) channels), Conv2 (\( K=3, 64 \) channels), MaxPool, FC1 (128 neurons), Output (10 neurons).</p>
+
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
+    <tr>
+        <th>Layer</th>
+        <th>Params Calculation</th>
+        <th>Total Params</th>
+        <th>FLOPs Calculation</th>
+        <th>Total FLOPs</th>
+    </tr>
+    <tr>
+        <td>Conv1</td>
+        <td>\( (3\times 3\times 3 + 1) \times 32 \)</td>
+        <td>896</td>
+        <td>\( (32\times 32\times 32) \times (2\times 3\times 3\times 3) \)</td>
+        <td>1,769,472</td>
+    </tr>
+    <tr>
+        <td>Conv2</td>
+        <td>\( (3\times 3\times 32 + 1) \times 64 \)</td>
+        <td>18,496</td>
+        <td>\( (32\times 32\times 64) \times (2\times 3\times 3\times 32) \)</td>
+        <td>37,748,736</td>
+    </tr>
+    <tr>
+        <td>MaxPool</td>
+        <td>None</td>
+        <td>0</td>
+        <td>Negligible</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>FC1</td>
+        <td>\( (16384 \times 128) + 128 \)</td>
+        <td>2,097,280</td>
+        <td>\( 2 \times 16384 \times 128 \)</td>
+        <td>4,194,304</td>
+    </tr>
+    <tr>
+        <td>Output</td>
+        <td>\( (128 \times 10) + 10 \)</td>
+        <td>1,290</td>
+        <td>\( 2 \times 128 \times 10 \)</td>
+        <td>2,560</td>
+    </tr>
+</table>
+
+<div class="exam-tip">
+    <span class="tip-label">The Fundamental Dichotomy</span>
+    <ul>
+        <li><strong>Parameters:</strong> Dominated by Fully Connected layers (~99%). They dictate memory footprint and model capacity (risk of overfitting).</li>
+        <li><strong>FLOPs:</strong> Dominated by Convolutional layers (~90%). They dictate computational cost, latency, and throughput.</li>
+    </ul>
+</div><h1>Part III: Advanced Convolutional Neural Networks and Architectures</h1>
+
+<h2>Chapter 10: Types of Convolutions</h2>
+
+<h3>10.1 Standard Convolution vs Advanced Convolutions</h3>
+<div class="definition">
+<span class="def-label">Standard Convolution</span>
+Computes spatial and channel-wise features simultaneously using a dense filter kernel.
+</div>
+<div class="example-block">
+<span class="example-label">Parameter Computation (Standard)</span>
+For an input $H \times W \times C_{in}$ and a kernel $K \times K \times C_{in}$ with $C_{out}$ filters:
+Number of parameters = $K \cdot K \cdot C_{in} \cdot C_{out} + C_{out}$.
+</div>
+
+<h3>10.2 Dilated (Atrous) Convolution</h3>
+<div class="definition">
+<span class="def-label">Dilated Convolution</span>
+Inserts spaces (zeros) between kernel elements defined by a dilation rate, expanding the receptive field without increasing the parameter count.
+</div>
+<div class="formula-block">
+<div class="formula-name">Receptive Field (Dilated)</div>
+<div class="formula-equation">$RF = (K - 1) \cdot D + 1$</div>
+<div class="formula-where">where $K$ is the kernel size and $D$ is the dilation rate.</div>
+</div>
+<div class="exam-tip"><span class="tip-label">Exam Tip</span> <span class="tag-must-know">Must Know</span> Dilated convolutions are crucial in semantic segmentation to maintain spatial resolution while expanding the receptive field.</div>
+
+<h3>10.3 Deformable Convolution</h3>
+<div class="definition">
+<span class="def-label">Deformable Convolution</span>
+Adds 2D offsets to the regular grid sampling locations in the standard convolution operation, allowing the kernel to adapt to the geometric variations of objects.
+</div>
+
+<h3>10.4 Depthwise Separable Convolution</h3>
+<div class="definition">
+<span class="def-label">Depthwise Separable Convolution</span>
+Factorizes a standard convolution into a depthwise convolution (spatial filtering per channel) and a pointwise convolution ($1 \times 1$ conv to combine channels).
+</div>
+<div class="formula-block">
+<div class="formula-name">Parameter Comparison</div>
+<div class="formula-equation">$Params_{DW} = (K \cdot K \cdot C_{in}) + (1 \cdot 1 \cdot C_{in} \cdot C_{out}) = C_{in} \cdot (K^2 + C_{out})$</div>
+<div class="formula-equation">$Ratio = \frac{C_{in}(K^2 + C_{out})}{K^2 \cdot C_{in} \cdot C_{out}} = \frac{1}{C_{out}} + \frac{1}{K^2}$</div>
+<div class="formula-where">where $K$ is kernel size, $C_{in}$ is input channels, $C_{out}$ is output channels.</div>
+</div>
+<div class="exam-tip"><span class="tip-label">Exam Tip</span> <span class="tag-numerical">Numerical</span> Be prepared to calculate the reduction in parameters and computation (FLOPs) using depthwise separable convolutions compared to standard convolutions.</div>
+
+<h3>10.5 Transpose Convolution</h3>
+<div class="definition">
+<span class="def-label">Transpose Convolution</span>
+Learns to upsample spatial dimensions by broadcasting input pixels through a learnable kernel weight matrix. Often represented as a matrix multiplication with the transposed convolution matrix.
+</div>
+
+<h2>Chapter 11: Upsampling Techniques</h2>
+
+<h3>11.1 Unpooling and Interpolation</h3>
+<div class="definition">
+<span class="def-label">Nearest Neighbor</span>
+Duplicates the value of the closest input pixel to fill the upsampled grid.
+</div>
+<div class="definition">
+<span class="def-label">Bed of Nails</span>
+Places the input pixel value at the top-left (or specific) location of the upsampled block, filling the rest with zeros.
+</div>
+<div class="definition">
+<span class="def-label">Max Unpooling</span>
+Uses the stored pooling indices from the corresponding max-pooling layer to place the values in the upsampled grid. Other locations are set to zero.
+</div>
+<div class="definition">
+<span class="def-label">Linear / Bilinear / Bicubic Interpolation</span>
+Computes upsampled values via weighted averages of the nearest 2, 4, or 16 pixels, respectively.
+</div>
+<div class="definition">
+<span class="def-label">Transpose Convolution</span>
+A learnable upsampling technique (refer to Chapter 10).
+</div>
+
+<h2>Chapter 12: CNN Backpropagation</h2>
+
+<h3>12.1 Forward and Backward Pass</h3>
+<div class="important-note">
+<span class="note-label">Note</span> Backpropagation through a convolutional layer involves mathematically deriving the gradient with respect to the input (which is a full convolution of a 180-degree rotated filter) and with respect to the weights.
+</div>
+<div class="formula-block">
+<div class="formula-name">Gradient w.r.t Weights</div>
+<div class="formula-equation">$\frac{\partial L}{\partial w_i} = \sum_{j} \frac{\partial L}{\partial z_j} \cdot \frac{\partial z_j}{\partial w_i}$</div>
+<div class="formula-where">where $w_i$ is a filter weight, $z_j$ is the output feature map element, and $L$ is the loss. Using the chain rule, gradients are accumulated for shared weights.</div>
+</div>
+<div class="common-mistake"><span class="mistake-label">Common Mistake</span> <span class="tag-derivation">Derivation</span> Forgetting to sum the gradients over all spatial locations where the weight was applied due to weight sharing.</div>
+
+<h2>Chapter 13: State-of-the-Art CNN Architectures</h2>
+
+<h3>13.1 LeNet-5 (1998)</h3>
+<ul>
+<li><strong>Input:</strong> $32 \times 32$ grayscale image.</li>
+<li><strong>Layer 1 (Conv):</strong> 6 filters ($5 \times 5$), stride 1 $\rightarrow$ $28 \times 28 \times 6$. Activation: Tanh.</li>
+<li><strong>Layer 2 (Avg Pool / Sub-sampling):</strong> $2 \times 2$ filter, stride 2 $\rightarrow$ $14 \times 14 \times 6$. Activation: Tanh.</li>
+<li><strong>Layer 3 (Conv):</strong> 16 filters ($5 \times 5$), stride 1 $\rightarrow$ $10 \times 10 \times 16$. Activation: Tanh. (Connectivity limited to disrupt symmetry).</li>
+<li><strong>Layer 4 (Avg Pool):</strong> $2 \times 2$ filter, stride 2 $\rightarrow$ $5 \times 5 \times 16$. Activation: Tanh.</li>
+<li><strong>Layer 5 (Conv/FC):</strong> 120 filters ($1 \times 1$ conv or FC) $\rightarrow$ 120 units. Activation: Tanh.</li>
+<li><strong>Layer 6 (FC):</strong> 84 units. Activation: Tanh.</li>
+<li><strong>Output (SoftMax):</strong> 10 units (digits 0-9).</li>
+</ul>
+
+<h3>13.2 AlexNet (2012)</h3>
+<ul>
+<li><strong>Input:</strong> $227 \times 227 \times 3$ image.</li>
+<li><strong>Conv 1:</strong> 96 filters, $11 \times 11$, Stride 4 $\rightarrow$ $55 \times 55 \times 96$ (ReLU)</li>
+<li><strong>Max Pool 1:</strong> $3 \times 3$, Stride 2 $\rightarrow$ $27 \times 27 \times 96$</li>
+<li><strong>Conv 2:</strong> 256 filters, $5 \times 5$, Stride 1 $\rightarrow$ $27 \times 27 \times 256$ (ReLU &rarr; Norm)</li>
+<li><strong>Max Pool 2:</strong> $3 \times 3$, Stride 2 $\rightarrow$ $13 \times 13 \times 256$</li>
+<li><strong>Conv 3:</strong> 384 filters, $3 \times 3$, Stride 1 $\rightarrow$ $13 \times 13 \times 384$ (ReLU)</li>
+<li><strong>Conv 4:</strong> 384 filters, $3 \times 3$, Stride 1 $\rightarrow$ $13 \times 13 \times 384$ (ReLU)</li>
+<li><strong>Conv 5:</strong> 256 filters, $3 \times 3$, Stride 1 $\rightarrow$ $13 \times 13 \times 256$ (ReLU)</li>
+<li><strong>Max Pool 3:</strong> $3 \times 3$, Stride 2 $\rightarrow$ $6 \times 6 \times 256$</li>
+<li>Followed by FC layers (4096, 4096, 1000). Dropout (rate 0.5) applied. ~60 million parameters total.</li>
+</ul>
+
+<h3>13.3 VGG-16</h3>
+<div class="important-note">
+<span class="note-label">Note</span> <span class="tag-memorize">Memorize</span> Uniform architecture using stacked $3 \times 3$ convolutions replacing large filters. Parameter count ~138 million. Computationally expensive with high memory demand.
+</div>
+
+<h3>13.4 GoogLeNet / Inception v1</h3>
+<div class="definition">
+<span class="def-label">Inception Module</span>
+Parallel convolutional pathways ($1 \times 1$, $3 \times 3$, $5 \times 5$) and pooling to capture local and global context. Uses $1 \times 1$ convolutions before larger filters to reduce input channels and complexity. Includes auxiliary classifiers.
+</div>
+
+<h3>13.5 ResNet (Deep Residual Learning)</h3>
+<div class="definition">
+<span class="def-label">Residual Framework</span>
+Introduces skip connections (identity mappings). Learns residual functions to enable training of extremely deep networks (e.g., 152 layers) without vanishing gradient problems.
+</div>
+
+<h3>13.6 DenseNet (Densely Connected Convolutional Networks)</h3>
+<div class="definition">
+<span class="def-label">Dense Connectivity</span>
+Each layer is connected to every other subsequent layer. Maximizes feature reuse, mitigates vanishing gradients, and requires substantially fewer parameters than ResNet. Uses transition layers to change feature-map sizes.
+</div>
+
+<h3>13.7 MobileNet</h3>
+<div class="important-note">
+<span class="note-label">MobileNet</span> Relies on depthwise separable convolutions as the core building block for extreme parameter and FLOP reduction in mobile vision applications. Uses hyperparameters like width multiplier and image resolution to scale down.
+</div>
+
+<h3>13.8 EfficientNet</h3>
+<div class="definition">
+<span class="def-label">Compound Scaling Method</span>
+Uniformly scales width, depth, and resolution for optimal performance. Base building block is MBConv.
+</div>
+<div class="formula-block">
+<div class="formula-name">EfficientNet Scaling Formulas</div>
+<div class="formula-equation">Depth: $d = \alpha^\phi$</div>
+<div class="formula-equation">Width: $w = \beta^\phi$</div>
+<div class="formula-equation">Resolution: $r = \gamma^\phi$</div>
+<div class="formula-where">Constraint: $\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$ with $\alpha \ge 1, \beta \ge 1, \gamma \ge 1$.</div>
+</div>
+
+<h2>Chapter 14: Feature Normalization</h2>
+
+<h3>14.1 Batch Normalization</h3>
+<div class="formula-block">
+<div class="formula-name">Batch Norm</div>
+<div class="formula-equation">Mini-batch mean: $\mu_B = \frac{1}{m} \sum_{t=1}^{m} x_t$</div>
+<div class="formula-equation">Mini-batch variance: $\sigma_B^2 = \frac{1}{m} \sum_{t=1}^{m} (x_t - \mu_B)^2$</div>
+<div class="formula-equation">Normalize: $\hat{x}_t = \frac{x_t - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$</div>
+<div class="formula-equation">Output: $y_t = \gamma\hat{x}_t + \beta \equiv BN_{\gamma,\beta}(x_t)$</div>
+<div class="formula-where">Normalizes across N, H, W for each C. Depends on batch size.</div>
+</div>
+
+<h3>14.2 Layer, Instance, and Group Normalization</h3>
+<ul>
+<li><strong>Layer Normalization:</strong> Normalizes C, H, W per sample N. Works independently of batch size.</li>
+<li><strong>Instance Normalization:</strong> Normalizes H, W per channel C per sample N. Effective for style transfer.</li>
+<li><strong>Group Normalization:</strong> Normalizes C', H, W per group G per sample N where $C = G \cdot C'$. Middle ground between layer and instance norm.</li>
+</ul>
+
+<h2>Chapter 15: Spatial Encoder-Decoder Architectures</h2>
+
+<h3>15.1 SegNet</h3>
+<div class="definition">
+<span class="def-label">SegNet</span>
+Transfers max-pooling indices from the encoder to the corresponding decoder layer to perform upsampling. Saves memory as it avoids storing full feature maps.
+</div>
+
+<h3>15.2 U-Net</h3>
+<div class="definition">
+<span class="def-label">U-Net Skip Connections</span>
+Concatenates full feature maps from the encoder to the decoder via copy-crop operations. Preserves fine-grained spatial details, providing precise localization heavily utilized in medical imaging.
+</div>
+
+<h3>15.3 DeepLabv3+</h3>
+<div class="definition">
+<span class="def-label">DeepLabv3+</span>
+Employs Atrous Spatial Pyramid Pooling (ASPP) to capture multi-scale context using dilated convolutions at multiple rates. Integrates an encoder-decoder structure and uses atrous depthwise separable convolutions for efficiency.
+</div>
+<!-- PART IV: FORMULA HANDBOOK -->
+
+<h1 id="part-iv">Part IV — Complete Formula Handbook</h1>
+
+<p>This section consolidates every formula from the course in a revision-friendly format. Each formula includes its name, equation, variable definitions, applicable conditions, and common uses.</p>
+
+<hr class="section-break">
+
+<h2 id="formulas-perceptron">4.1 Perceptron & Neural Network Formulas</h2>
+
+<div class="formula-block">
+  <p class="formula-name">F1. McCulloch-Pitts Neuron</p>
+  <p class="formula-equation">$$y = \begin{cases} 1 & \text{if } \sum_{i=1}^{n} x_i \geq \theta \\ 0 & \text{if } \sum_{i=1}^{n} x_i < \theta \end{cases}$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(x_i\) = binary input (\(0\) or \(1\))</li>
+      <li>\(\theta\) = threshold (fixed, not learnable)</li>
+      <li>\(y\) = binary output</li>
+    </ul>
+    <p><strong>Use when:</strong> Modeling simple boolean logic gates with fixed weights.</p>
+    <p><strong>Remember:</strong> MP neurons have fixed weights (all equal to 1) and binary inputs only.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F2. Perceptron Model</p>
+  <p class="formula-equation">$$y = \begin{cases} 1 & \text{if } \sum_{i=0}^{n} w_i x_i \geq 0 \\ 0 & \text{if } \sum_{i=0}^{n} w_i x_i < 0 \end{cases}$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(w_i\) = learnable weight for input \(i\)</li>
+      <li>\(x_i\) = real-valued input</li>
+      <li>\(w_0 = -\theta\) = bias term (negative threshold)</li>
+      <li>\(x_0 = 1\) = constant bias input</li>
+    </ul>
+    <p><strong>Vectorized form:</strong> \(y = 1\) if \(\mathbf{w}^T\mathbf{x} \geq 0\), else \(0\)</p>
+    <p><strong>Use when:</strong> Binary classification with linearly separable data.</p>
+    <p><strong>Remember:</strong> Cannot solve XOR or any non-linearly separable function.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F3. Perceptron Learning Updates</p>
+  <p class="formula-equation">
+    $$\text{If } \mathbf{x} \in P \text{ and } \mathbf{w}^T\mathbf{x} < 0: \quad \mathbf{w}_{new} = \mathbf{w}_{old} + \mathbf{x}$$
+    $$\text{If } \mathbf{x} \in N \text{ and } \mathbf{w}^T\mathbf{x} \geq 0: \quad \mathbf{w}_{new} = \mathbf{w}_{old} - \mathbf{x}$$
+  </p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(P\) = set of positive class inputs (label 1)</li>
+      <li>\(N\) = set of negative class inputs (label 0)</li>
+    </ul>
+    <p><strong>Remember:</strong> Converges in finite steps if and only if data is linearly separable.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F4. Sigmoid Activation Function</p>
+  <p class="formula-equation">$$y = \sigma(z) = \frac{1}{1 + e^{-z}} \quad \text{where } z = \sum_{i=0}^{n} w_i x_i$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(z\) = pre-activation (weighted sum)</li>
+      <li>\(\sigma\) = sigmoid/logistic function</li>
+      <li>Output range: \((0, 1)\)</li>
+    </ul>
+    <p><strong>Derivative:</strong> \(\sigma'(z) = \sigma(z)(1 - \sigma(z))\)</p>
+    <p><strong>Use when:</strong> Smooth, differentiable activation needed for gradient descent.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F5. Mean Squared Error Loss</p>
+  <p class="formula-equation">$$\mathcal{L}(\mathbf{w}) = \frac{1}{2} \sum_{i=1}^{N} (\hat{y}_i - y_i)^2$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(\hat{y}_i\) = predicted output for sample \(i\)</li>
+      <li>\(y_i\) = target/ground truth for sample \(i\)</li>
+      <li>\(N\) = number of samples</li>
+    </ul>
+    <p><strong>Remember:</strong> The \(\frac{1}{2}\) factor simplifies derivative computation.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F6. Cross-Entropy Loss (with Softmax)</p>
+  <p class="formula-equation">$$\mathcal{L}(\theta) = -\log(\hat{y}_l)$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(l\) = index of the true class</li>
+      <li>\(\hat{y}_l\) = softmax probability assigned to the true class</li>
+    </ul>
+    <p><strong>Gradient w.r.t. pre-activation:</strong> \(\frac{\partial \mathcal{L}}{\partial a_i} = -(1_{l=i} - \hat{y}_i) = \hat{y}_i - 1_{l=i}\)</p>
+    <p><strong>Use when:</strong> Multi-class classification with softmax output.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F7. Gradient Descent Update Rule</p>
+  <p class="formula-equation">$$\theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(\theta\) = all learnable parameters \([W_1, \ldots, W_L, b_1, \ldots, b_L]\)</li>
+      <li>\(\eta\) = learning rate (step size)</li>
+      <li>\(\nabla_\theta \mathcal{L}\) = gradient of loss w.r.t. parameters</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="formulas-cnn">4.2 Convolutional Neural Network Formulas</h2>
+
+<div class="formula-block">
+  <p class="formula-name">F8. Convolution Output Spatial Dimension</p>
+  <p class="formula-equation">$$O = \left\lfloor \frac{I - K + 2P}{S} \right\rfloor + 1$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(O\) = output spatial dimension (height or width)</li>
+      <li>\(I\) = input spatial dimension</li>
+      <li>\(K\) = kernel/filter size</li>
+      <li>\(P\) = padding (number of border pixels added)</li>
+      <li>\(S\) = stride</li>
+    </ul>
+    <p><strong>"Same" padding:</strong> \(P = \frac{K-1}{2}\) (for odd \(K\), stride 1)</p>
+    <p><strong>Remember:</strong> Output depth = number of filters \(F\), NOT computed by this formula.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F9. Learnable Parameters — Convolutional Layer</p>
+  <p class="formula-equation">$$\text{Params} = (K \times K \times C_{in} + 1) \times C_{out}$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(K \times K\) = spatial filter dimensions</li>
+      <li>\(C_{in}\) = number of input channels</li>
+      <li>\(+1\) = bias term per filter</li>
+      <li>\(C_{out}\) = number of output filters</li>
+    </ul>
+    <p><strong>Remember:</strong> Pooling layers have 0 learnable parameters.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F10. Receptive Field (Recursive)</p>
+  <p class="formula-equation">$$R_l = R_{l-1} + (K_l - 1) \cdot j_{l-1}$$</p>
+  <p class="formula-equation">$$j_l = j_{l-1} \cdot S_l$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(R_l\) = receptive field at layer \(l\) (initialize \(R_0 = 1\))</li>
+      <li>\(K_l\) = kernel size at layer \(l\)</li>
+      <li>\(j_l\) = effective jump/stride at layer \(l\) (initialize \(j_0 = 1\))</li>
+      <li>\(S_l\) = stride at layer \(l\)</li>
+    </ul>
+    <p><strong>Key insight:</strong> Stride > 1 causes geometric growth in RF. Pooling layers also use these formulas.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F11. FLOPs — Convolutional Layer</p>
+  <p class="formula-equation">$$\text{FLOPs}_{conv} = H_{out} \times W_{out} \times C_{out} \times (2 \times K_h \times K_w \times C_{in})$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(H_{out}, W_{out}\) = output spatial dimensions</li>
+      <li>\(C_{out}\) = number of output channels</li>
+      <li>\(K_h, K_w\) = kernel height and width</li>
+      <li>\(C_{in}\) = number of input channels</li>
+      <li>Factor of 2 = 1 multiply &rarr; 1 add per weight element</li>
+    </ul>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F12. FLOPs — Fully Connected Layer</p>
+  <p class="formula-equation">$$\text{FLOPs}_{FC} = 2 \times N_{in} \times N_{out}$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(N_{in}\) = number of input features/neurons</li>
+      <li>\(N_{out}\) = number of output neurons</li>
+    </ul>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F13. Depthwise Separable Convolution — Parameters</p>
+  <p class="formula-equation">$$\text{Params}_{DW+PW} = \underbrace{(K^2 \times 1 \times C_{in} + C_{in})}_{\text{Depthwise}} + \underbrace{(1 \times 1 \times C_{in} \times C_{out} + C_{out})}_{\text{Pointwise}}$$</p>
+  <div class="formula-where">
+    <p><strong>Computational savings ratio:</strong> \(\frac{1}{C_{out}} + \frac{1}{K^2}\)</p>
+    <p><strong>Example:</strong> For \(K=3, C_{out}=10\): ratio â‰ˆ 0.21 (i.e., ~79% fewer operations)</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F14. Dilated Convolution — Effective Kernel Size</p>
+  <p class="formula-equation">$$k' = k + (k-1)(d-1) = d(k-1) + 1$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(k\) = original kernel size</li>
+      <li>\(d\) = dilation rate</li>
+      <li>\(k'\) = effective spatial footprint</li>
+    </ul>
+    <p><strong>Remember:</strong> Parameters remain \(k^2\) regardless of dilation rate.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="formulas-norm">4.3 Normalization Formulas</h2>
+
+<div class="formula-block">
+  <p class="formula-name">F15. Batch Normalization</p>
+  <p class="formula-equation">
+    $$\mu_B = \frac{1}{m}\sum_{t=1}^{m} x_t \qquad \sigma_B^2 = \frac{1}{m}\sum_{t=1}^{m}(x_t - \mu_B)^2$$
+    $$\hat{x}_t = \frac{x_t - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}} \qquad y_t = \gamma\hat{x}_t + \beta$$
+  </p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(\mu_B, \sigma_B^2\) = mini-batch mean and variance</li>
+      <li>\(\epsilon\) = small constant for numerical stability</li>
+      <li>\(\gamma, \beta\) = learnable scale and shift parameters</li>
+    </ul>
+    <p><strong>Normalizes over:</strong> Batch (N) &rarr; Spatial (H, W) dimensions, per channel (C)</p>
+    <p><strong>Note:</strong> When \(\gamma = \sigma_B, \beta = \mu_B\), the identity function is recovered.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F16. Layer Normalization</p>
+  <p class="formula-equation">$$\mu_N = \frac{1}{CHW}\sum_{i,j,k} x_{Nijk} \qquad y = \gamma\hat{x} + \beta$$</p>
+  <div class="formula-where">
+    <p><strong>Normalizes over:</strong> Channels (C) &rarr; Spatial (H, W), per sample (N)</p>
+    <p><strong>Use when:</strong> Batch-size independent normalization needed (e.g., RNNs, small batches)</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F17. Instance Normalization</p>
+  <p class="formula-equation">$$\mu_{NC} = \frac{1}{HW}\sum_{j,k} x_{Njk} \qquad y = \gamma\hat{x} + \beta$$</p>
+  <div class="formula-where">
+    <p><strong>Normalizes over:</strong> Spatial (H, W) only, per channel (C) per sample (N)</p>
+    <p><strong>Use when:</strong> Style transfer tasks (preserves style-agnostic content)</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F18. Group Normalization</p>
+  <p class="formula-equation">$$C = G \cdot C' \qquad \mu_{NG} = \frac{1}{C'HW}\sum_{i,j,k} x_{NGijk} \qquad y = \gamma\hat{x} + \beta$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(G\) = number of groups</li>
+      <li>\(C'\) = channels per group</li>
+    </ul>
+    <p><strong>Normalizes over:</strong> Channels within group (C') &rarr; Spatial (H, W), per group (G) per sample (N)</p>
+    <p><strong>Note:</strong> Middle ground between Layer Norm and Instance Norm.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="formulas-scaling">4.4 Architecture Scaling Formulas</h2>
+
+<div class="formula-block">
+  <p class="formula-name">F19. EfficientNet Compound Scaling</p>
+  <p class="formula-equation">
+    $$d = \alpha^\phi \qquad w = \beta^\phi \qquad r = \gamma^\phi$$
+    $$\text{subject to: } \alpha \cdot \beta^2 \cdot \gamma^2 \approx 2 \qquad \alpha \geq 1, \beta \geq 1, \gamma \geq 1$$
+  </p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(d\) = depth scaling factor</li>
+      <li>\(w\) = width scaling factor</li>
+      <li>\(r\) = resolution scaling factor</li>
+      <li>\(\alpha, \beta, \gamma\) = constants found via grid search with \(\phi = 1\)</li>
+      <li>\(\phi\) = user-specified compound coefficient controlling available resources</li>
+    </ul>
+    <p><strong>Step 1:</strong> Fix \(\phi = 1\) and find best \(\alpha, \beta, \gamma\).</p>
+    <p><strong>Step 2:</strong> Fix \(\alpha, \beta, \gamma\) and increase \(\phi\) for models B1–B7.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="formulas-interpolation">4.5 Interpolation Formulas</h2>
+
+<div class="formula-block">
+  <p class="formula-name">F20. Linear Interpolation (1D)</p>
+  <p class="formula-equation">$$f(n+a) = (1-a) \cdot f(n) + a \cdot f(n+1) \qquad 0 < a < 1$$</p>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F21. Bilinear Interpolation (2D)</p>
+  <p class="formula-equation">$$
+\begin{aligned}
+f(x,y) &\approx \frac{1}{(x_2-x_1)(y_2-y_1)} \Big[ f(Q_{11})(x_2-x)(y_2-y) \\
+&\quad + f(Q_{21})(x-x_1)(y_2-y) + f(Q_{12})(x_2-x)(y-y_1) \\
+&\quad + f(Q_{22})(x-x_1)(y-y_1) \Big]
+\end{aligned}
+$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong> \(Q_{11}, Q_{21}, Q_{12}, Q_{22}\) are the four nearest grid points surrounding \((x,y)\).</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F22. Bicubic Interpolation (2D)</p>
+  <p class="formula-equation">$$v(s,t) = \sum_{i=0}^{3}\sum_{j=0}^{3} a_{ij} s^i t^j$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong> Uses a \(4 \times 4\) neighborhood (16 surrounding pixels). Produces the sharpest upsampled result among interpolation methods.</p>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F23. Deformable Convolution</p>
+  <p class="formula-equation">$$y(p_0) = \sum_{p_n \in R} w(p_n) \cdot x(p_0 + p_n + \Delta p_n)$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(p_0\) = current sampling location</li>
+      <li>\(p_n\) = standard grid offset</li>
+      <li>\(\Delta p_n\) = learned 2D offset (continuous, fractional)</li>
+      <li>\(R\) = regular grid of the filter</li>
+    </ul>
+    <p><strong>Sub-pixel sampling via bilinear interpolation:</strong> \(G(q,p) = \max(0, 1-|q_x - p_x|) \cdot \max(0, 1-|q_y - p_y|)\)</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="formulas-backprop">4.6 Backpropagation Gradient Formulas</h2>
+
+<div class="formula-block">
+  <p class="formula-name">F24. Output Layer Gradient (MSE)</p>
+  <p class="formula-equation">$$\frac{\partial E_{total}}{\partial out_{o_i}} = -(target_{o_i} - out_{o_i})$$</p>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F25. Sigmoid Derivative</p>
+  <p class="formula-equation">$$\frac{\partial out}{\partial net} = out \cdot (1 - out)$$</p>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F26. Weight Update (Output Layer)</p>
+  <p class="formula-equation">$$\frac{\partial E_{total}}{\partial w_j} = \frac{\partial E_{total}}{\partial out_{o_i}} \cdot \frac{\partial out_{o_i}}{\partial net_{o_i}} \cdot \frac{\partial net_{o_i}}{\partial w_j}$$</p>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F27. Hidden Layer Gradient (Backpropagation)</p>
+  <p class="formula-equation">$$\nabla_{\mathbf{h}_i}\mathcal{L} = \mathbf{W}_{i+1}^T \nabla_{\mathbf{a}_{i+1}}\mathcal{L}$$</p>
+  <p class="formula-equation">$$\nabla_{\mathbf{a}_i}\mathcal{L} = \nabla_{\mathbf{h}_i}\mathcal{L} \odot g'(\mathbf{a}_i)$$</p>
+  <div class="formula-where">
+    <p><strong>Where:</strong></p>
+    <ul>
+      <li>\(\mathbf{h}_i\) = post-activation at layer \(i\)</li>
+      <li>\(\mathbf{a}_i\) = pre-activation at layer \(i\)</li>
+      <li>\(\odot\) = element-wise (Hadamard) product</li>
+      <li>\(g'(\cdot)\) = derivative of activation function</li>
+    </ul>
+  </div>
+</div>
+
+<div class="formula-block">
+  <p class="formula-name">F28. Parameter Gradients</p>
+  <p class="formula-equation">$$\frac{\partial \mathcal{L}}{\partial \mathbf{W}_k} = \nabla_{\mathbf{a}_k}\mathcal{L} \cdot \mathbf{h}_{k-1}^T \qquad \frac{\partial \mathcal{L}}{\partial \mathbf{b}_k} = \nabla_{\mathbf{a}_k}\mathcal{L}$$</p>
+</div>
+<!-- PART V: DERIVATIONS -->
+
+<h1 id="part-v">Part V — Step-by-Step Derivations</h1>
+
+<p>This section breaks down the critical mathematical proofs and derivations required for the exam.</p>
+
+<hr class="section-break">
+
+<h2 id="deriv-perceptron">5.1 Perceptron Convergence Proof</h2>
+
+<div class="worked-solution">
+  <p class="solution-label">Proof of Perceptron Convergence</p>
+  <p><strong>Goal:</strong> Prove that if sets $P$ and $N$ are finite and linearly separable, the perceptron learning algorithm updates weights $\mathbf{w}$ a finite number of times $k$ before converging.</p>
+  
+  <div class="step">
+    <span class="step-number">Step 1: Problem Setup & Normalization</span>
+    <p>Assume $\exists \mathbf{w}^*$ (a perfect normalized solution vector) such that $\mathbf{w}^{*T}\mathbf{x} \ge 0 \;\forall \mathbf{x} \in P$ and $\mathbf{w}^{*T}\mathbf{x} < 0 \;\forall \mathbf{x} \in N$.</p>
+    <p>To simplify, negate all inputs in $N$: for $x \in N$, let $p = -x$. Now $p \in P$. We combine them into a single set $P' = P \cup N^-$. We want $\mathbf{w}^Tp \ge 0 \; \forall p \in P'$.</p>
+    <p>Update rule: If we pick $p \in P'$ and $\mathbf{w}^Tp < 0$, we update: $\mathbf{w}_{t+1} = \mathbf{w}_t + p$.</p>
+    <p>Assume all vectors $p$ are normalized: $|p| = 1$.</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 2: Track the angle between $\mathbf{w}_{t+1}$ and $\mathbf{w}^*$</span>
+    <p>Let $\beta$ be the angle between the perfect solution $\mathbf{w}^*$ and our current weight vector $\mathbf{w}_{t+1}$.</p>
+    <p>$$\cos\beta = \frac{\mathbf{w}^* \cdot \mathbf{w}_{t+1}}{|\mathbf{w}^*||\mathbf{w}_{t+1}|} = \frac{\mathbf{w}^* \cdot \mathbf{w}_{t+1}}{|\mathbf{w}_{t+1}|} \quad (\text{since } |\mathbf{w}^*|=1)$$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 3: Analyze the Numerator</span>
+    <p>$\mathbf{w}^* \cdot \mathbf{w}_{t+1} = \mathbf{w}^* \cdot (\mathbf{w}_t + p) = \mathbf{w}^* \cdot \mathbf{w}_t + \mathbf{w}^* \cdot p$</p>
+    <p>Let $\delta = \min (\mathbf{w}^* \cdot p) \;\forall p$. Since $P, N$ are finite and separable, $\delta > 0$.</p>
+    <p>$\mathbf{w}^* \cdot \mathbf{w}_{t+1} \ge \mathbf{w}^* \cdot \mathbf{w}_t + \delta$</p>
+    <p>After $k$ corrections: $\text{Numerator} \ge \mathbf{w}^* \cdot \mathbf{w}_0 + k\delta$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 4: Analyze the Denominator Squared</span>
+    <p>$|\mathbf{w}_{t+1}|^2 = (\mathbf{w}_t + p) \cdot (\mathbf{w}_t + p) = |\mathbf{w}_t|^2 + 2\mathbf{w}_t \cdot p + |p|^2$</p>
+    <p>We only update when there is an error, meaning $\mathbf{w}_t \cdot p \le 0$. Since $|p|^2 = 1$:</p>
+    <p>$|\mathbf{w}_{t+1}|^2 \le |\mathbf{w}_t|^2 + 1$</p>
+    <p>After $k$ corrections: $\text{Denominator}^2 \le |\mathbf{w}_0|^2 + k$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 5: Conclusion</span>
+    <p>Combine them into $\cos\beta$:</p>
+    <p>$\cos\beta \ge \frac{\mathbf{w}^* \cdot \mathbf{w}_0 + k\delta}{\sqrt{|\mathbf{w}_0|^2 + k}}$</p>
+    <p>As $k$ grows, the numerator grows linearly ($O(k)$) while the denominator grows with square root ($O(\sqrt{k})$). Therefore, $\cos\beta$ grows proportional to $\sqrt{k}$.</p>
+    <p>Since $\cos\beta$ must be $\le 1$, $k$ (the number of updates) must be strictly bounded by a maximum finite number. Thus, the algorithm converges.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="deriv-backprop">5.2 Backpropagation Chain Rule Formulation</h2>
+
+<div class="worked-solution">
+  <p class="solution-label">Multivariate Chain Rule for Matrix Weights</p>
+  <p><strong>Goal:</strong> Formulate the gradient descent update for a weight matrix $\mathbf{W}$ connecting layer $l-1$ to layer $l$.</p>
+
+  <div class="step">
+    <span class="step-number">Step 1: The Loss Gradient w.r.t a Single Weight</span>
+    <p>Let $w_{ij}$ be the weight connecting neuron $j$ in layer $l-1$ to neuron $i$ in layer $l$. The pre-activation for neuron $i$ is $z_i = \sum_j w_{ij} a_j^{(l-1)} + b_i$.</p>
+    <p>By the chain rule: $\frac{\partial \mathcal{L}}{\partial w_{ij}} = \frac{\partial \mathcal{L}}{\partial z_i} \frac{\partial z_i}{\partial w_{ij}}$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 2: Local Gradient</span>
+    <p>Since $z_i = w_{ij} a_j^{(l-1)} + \text{terms without } w_{ij}$, the partial derivative is simply the input from the previous layer:</p>
+    <p>$\frac{\partial z_i}{\partial w_{ij}} = a_j^{(l-1)}$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 3: Vectorized Formulation</span>
+    <p>Let $\delta^{(l)}_i = \frac{\partial \mathcal{L}}{\partial z_i}$ (the "error" or upstream gradient at neuron $i$).</p>
+    <p>Then $\frac{\partial \mathcal{L}}{\partial w_{ij}} = \delta^{(l)}_i a_j^{(l-1)}$</p>
+    <p>In full matrix form for layer $l$: $\nabla_{\mathbf{W}} \mathcal{L} = \delta^{(l)} (\mathbf{a}^{(l-1)})^T$</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="deriv-ds-conv">5.3 Depthwise Separable Convolution Computational Savings</h2>
+
+<div class="worked-solution">
+  <p class="solution-label">Derivation of FLOP Reduction Ratio</p>
+  <p><strong>Goal:</strong> Show mathematically why Depthwise Separable Convolution is vastly more efficient than Standard Convolution.</p>
+  
+  <div class="step">
+    <span class="step-number">Step 1: Standard Convolution FLOPs</span>
+    <p>For an output spatial map of $H_{out} \times W_{out}$ and $C_{out}$ channels, computing from an input of $C_{in}$ channels with a $K \times K$ kernel:</p>
+    <p>$\text{FLOPs}_{Std} \approx (H_{out} \times W_{out} \times C_{out}) \times (K \times K \times C_{in})$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 2: Depthwise Separable FLOPs</span>
+    <p><strong>Part A (Depthwise):</strong> Applies one $K \times K$ spatial filter to each of the $C_{in}$ input channels. Generates $C_{in}$ intermediate channels.</p>
+    <p>$\text{FLOPs}_{DW} \approx (H_{out} \times W_{out} \times C_{in}) \times (K \times K \times 1)$</p>
+    
+    <p><strong>Part B (Pointwise):</strong> Applies a $1 \times 1$ filter across the $C_{in}$ intermediate channels to create $C_{out}$ output channels.</p>
+    <p>$\text{FLOPs}_{PW} \approx (H_{out} \times W_{out} \times C_{out}) \times (1 \times 1 \times C_{in})$</p>
+    
+    <p>$\text{FLOPs}_{Sep} = \text{FLOPs}_{DW} + \text{FLOPs}_{PW} = H_{out}W_{out}C_{in}(K^2 + C_{out})$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 3: Compute the Ratio</span>
+    <p>Ratio = $\frac{\text{FLOPs}_{Sep}}{\text{FLOPs}_{Std}} = \frac{H_{out}W_{out}C_{in}(K^2 + C_{out})}{H_{out}W_{out}C_{in}(K^2 \cdot C_{out})} = \frac{K^2 + C_{out}}{K^2 C_{out}}$</p>
+    <p class="answer">Ratio = $\frac{1}{C_{out}} + \frac{1}{K^2}$</p>
+    <p>Since $C_{out} \gg K^2$ (e.g., $256 \gg 9$), the ratio is dominated by $\frac{1}{K^2}$. For a $3 \times 3$ kernel, computational cost drops to roughly $1/9$th (~11%) of standard convolution.</p>
+  </div>
+</div>
+
+<hr class="section-break">
+
+<!-- PART VI: NUMERICAL PROBLEM GUIDE -->
+
+<h1 id="part-vi">Part VI — Numerical Problem Guide</h1>
+
+<p>This section provides exact worked solutions for the primary numerical problem types encountered in the course.</p>
+
+<h2 id="num-backprop">6.1 Full Backpropagation Worked Example</h2>
+
+<div class="example-block">
+  <p class="example-label">Problem Statement</p>
+  <p>Given a 2-layer network with inputs $i_1=0.05, i_2=0.10$ and targets $t_1=0.01, t_2=0.99$.<br>
+  Weights: $w_1=0.15, w_2=0.25, w_3=0.20, w_4=0.30$ (Input $\rightarrow$ Hidden). $w_5=0.40, w_6=0.45, w_7=0.50, w_8=0.55$ (Hidden $\rightarrow$ Output).<br>
+  Biases: $b_1=0.35, b_2=0.60$. Learning rate $\eta=0.5$.<br>
+  Calculate the updated weight $w_5^{new}$.</p>
+</div>
+
+<div class="worked-solution">
+  <div class="step">
+    <span class="step-number">Step 1: Forward Pass (Hidden Layer)</span>
+    <p>$net_{h1} = w_1 i_1 + w_3 i_2 + b_1 = 0.15(0.05) + 0.20(0.10) + 0.35 = 0.0075 + 0.02 + 0.35 = 0.3775$</p>
+    <p>$out_{h1} = \frac{1}{1 + e^{-0.3775}} = 0.5933$</p>
+    <p>$net_{h2} = 0.3975 \implies out_{h2} = 0.5981$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 2: Forward Pass (Output Layer)</span>
+    <p>$net_{o1} = w_5 out_{h1} + w_7 out_{h2} + b_2 = 0.40(0.5933) + 0.50(0.5981) + 0.60 = 1.1364$</p>
+    <p>$out_{o1} = \frac{1}{1 + e^{-1.1364}} = 0.7570$</p>
+    <p>$net_{o2} = 1.1959 \implies out_{o2} = 0.7678$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 3: Total Error Calculation</span>
+    <p>$E_{total} = E_{o1} + E_{o2} = \frac{1}{2}(0.01 - 0.7570)^2 + \frac{1}{2}(0.99 - 0.7678)^2$</p>
+    <p>$E_{total} = \frac{1}{2}(0.558) + \frac{1}{2}(0.0494) = 0.2790 + 0.0247 = 0.3037$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 4: Backward Pass (Gradient for $w_5$)</span>
+    <p>Using the chain rule: $\frac{\partial E_{total}}{\partial w_5} = \frac{\partial E_{total}}{\partial out_{o1}} \cdot \frac{\partial out_{o1}}{\partial net_{o1}} \cdot \frac{\partial net_{o1}}{\partial w_5}$</p>
+    <p>Term 1: $\frac{\partial E_{total}}{\partial out_{o1}} = -(t_1 - out_{o1}) = -(0.01 - 0.7570) = 0.7470$</p>
+    <p>Term 2: $\frac{\partial out_{o1}}{\partial net_{o1}} = out_{o1}(1 - out_{o1}) = 0.7570(1 - 0.7570) = 0.1839$</p>
+    <p>Term 3: $\frac{\partial net_{o1}}{\partial w_5} = out_{h1} = 0.5933$</p>
+    <p>Product: $\frac{\partial E_{total}}{\partial w_5} = 0.7470 \times 0.1839 \times 0.5933 = 0.0815$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Step 5: Weight Update</span>
+    <p>$w_5^{new} = w_5 - \eta \frac{\partial E_{total}}{\partial w_5} = 0.40 - 0.5(0.0815) = 0.40 - 0.04075$</p>
+    <p class="answer">$w_5^{new} = 0.3592$</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="num-conv">6.2 CNN Dimensionality & Parameter Counting</h2>
+
+<div class="example-block">
+  <p class="example-label">Problem Statement</p>
+  <p>Input Volume: $32 \times 32 \times 3$. Filter Volume: $3 \times 5 \times 5$. Number of Filters $F = 10$. Stride $S = 1$. Padding $P = 2$.<br>
+  Find the output spatial dimensions and the total number of learnable parameters.</p>
+</div>
+
+<div class="worked-solution">
+  <div class="step">
+    <span class="step-number">Step 1: Output Spatial Dimensions</span>
+    <p>$W_2 = \lfloor \frac{W_1 - K + 2P}{S} \rfloor + 1 = \lfloor \frac{32 - 5 + 2(2)}{1} \rfloor + 1 = \lfloor \frac{32 - 5 + 4}{1} \rfloor + 1 = 31 + 1 = 32$</p>
+    <p>$H_2 = \lfloor \frac{H_1 - K + 2P}{S} \rfloor + 1 = 32$</p>
+    <p>Output depth $C_{out} = F = 10$.</p>
+    <p class="answer">Output Volume = $32 \times 32 \times 10$</p>
+  </div>
+  
+  <div class="step">
+    <span class="step-number">Step 2: Learnable Parameters</span>
+    <p>Parameters per filter: $(K_h \times K_w \times C_{in}) + 1 = (5 \times 5 \times 3) + 1 = 75 + 1 = 76$</p>
+    <p>Total Parameters: Params per filter $\times F = 76 \times 10$</p>
+    <p class="answer">Total Parameters = $760$</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="num-rf">6.3 Receptive Field Calculation</h2>
+
+<div class="example-block">
+  <p class="example-label">Problem Statement</p>
+  <p>Calculate the receptive field (w.r.t the original input) after 3 consecutive Convolution layers, each having a Kernel Size $K=3$ and Stride $S=2$.</p>
+</div>
+
+<div class="worked-solution">
+  <div class="step">
+    <span class="step-number">Initialization</span>
+    <p>Base RF $R_0 = 1$. Base effective jump $j_0 = 1$.</p>
+  </div>
+  
+  <div class="step">
+    <span class="step-number">Layer 1 ($K_1=3, S_1=2$)</span>
+    <p>$RF_1 = R_0 + (K_1 - 1)j_0 = 1 + (3 - 1)(1) = 3$</p>
+    <p>$j_1 = j_0 \times S_1 = 1 \times 2 = 2$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Layer 2 ($K_2=3, S_2=2$)</span>
+    <p>$RF_2 = R_1 + (K_2 - 1)j_1 = 3 + (3 - 1)(2) = 3 + 4 = 7$</p>
+    <p>$j_2 = j_1 \times S_2 = 2 \times 2 = 4$</p>
+  </div>
+
+  <div class="step">
+    <span class="step-number">Layer 3 ($K_3=3, S_3=2$)</span>
+    <p>$RF_3 = R_2 + (K_3 - 1)j_2 = 7 + (3 - 1)(4) = 7 + 8 = 15$</p>
+    <p>$j_3 = j_2 \times S_3 = 4 \times 2 = 8$</p>
+    <p class="answer">The Receptive Field of Layer 3 is $15 \times 15$</p>
+  </div>
+  
+  <div class="exam-tip">
+    <p class="tip-label">Shortcut Check</p>
+    <p>Notice the geometric growth. The RF jumps by 2, then 4, then 8. Because stride causes exponential scaling of the "jump" distance between spatial features.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2 id="num-segnet">6.4 SegNet Median Frequency Balancing</h2>
+
+<div class="example-block">
+  <p class="example-label">Problem Statement</p>
+  <p>Given the following pixel class frequencies in an image dataset: Road (0.56), Building (0.32), Vehicle (0.0875), Pedestrian (0.0325), Sign (0.03).<br>Calculate the class weights used by SegNet for cross-entropy loss balancing.</p>
+</div>
+
+<div class="worked-solution">
+  <div class="step">
+    <span class="step-number">Step 1: Find the Median Frequency</span>
+    <p>Order the frequencies: 0.03 (Sign), 0.0325 (Pedestrian), 0.0875 (Vehicle), 0.32 (Building), 0.56 (Road).</p>
+    <p>Median value = $0.0875$ (Vehicle).</p>
+  </div>
+  <div class="step">
+    <span class="step-number">Step 2: Calculate Weights ($\alpha_c = f_{median} / f_c$)</span>
+    <p>$\alpha_{\text{Road}} = 0.0875 / 0.56 = 0.1563$</p>
+    <p>$\alpha_{\text{Building}} = 0.0875 / 0.32 = 0.2734$</p>
+    <p>$\alpha_{\text{Vehicle}} = 0.0875 / 0.0875 = 1.0$</p>
+    <p>$\alpha_{\text{Pedestrian}} = 0.0875 / 0.0325 = 2.6923$</p>
+    <p>$\alpha_{\text{Sign}} = 0.0875 / 0.03 = 2.9167$</p>
+  </div>
+  <div class="step">
+    <p><strong>Result:</strong> SegNet heavily penalizes errors on rare classes (Sign $\approx 2.9\times$ normal weight) and reduces penalties for dominant classes (Road $\approx 0.15\times$ weight), forcing the network to learn minority class boundaries.</p>
+  </div>
+</div>
+<!-- PART VII: VISUAL REFERENCE & INTERPRETATION -->
+
+<h1 id="part-vii">Part VII — Visual Reference & Diagram Interpretation</h1>
+
+<p>This section explains how to interpret the most important diagrams from the course slides. While the actual exam paper will have its own graphics, understanding these core visual patterns is mandatory.</p>
+
+<hr class="section-break">
+
+<h2 id="vis-perceptron">7.1 Perceptron Decision Boundaries</h2>
+<div class="figure-container">
+  <p><strong>Visual Pattern:</strong> A 2D scatter plot with red/blue dots, separated by a single straight line.</p>
+  <p><strong>Interpretation:</strong> The line represents the decision boundary $\mathbf{w}^T\mathbf{x} = 0$. The region where the perceptron predicts 1 is denoted by the normal vector pointing from the origin in the direction of $\mathbf{w}$. If the dots cannot be separated by a single straight line (like the XOR problem), the perceptron will never converge.</p>
+</div>
+
+<h2 id="vis-rf">7.2 Receptive Field Ray-Tracing</h2>
+<div class="figure-container">
+  <img src="images/L08_p046.png" alt="Receptive Field Ray-Tracing" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+  <p><strong>Visual Pattern:</strong> A 1D grid stacked vertically (Layer 1, Layer 2, Layer 3). A single cell in the top layer projects a cone downwards hitting multiple cells in the bottom layer.</p>
+  <p><strong>Interpretation:</strong> This visualizes the Receptive Field. A standard $3 \times 3$ convolution with stride 1 creates a cone that grows by 2 on each step. The base of the cone at the input layer is the Receptive Field. If you see lines skipping cells in the projection, that indicates a Stride $> 1$ or a Dilated Convolution.</p>
+</div>
+
+<h2 id="vis-pad-pool">7.3 Padding and Pooling Matrices</h2>
+<div class="figure-container">
+  <p><strong>Visual Pattern (Zero Padding):</strong> A central grid of numbers surrounded by a ring of pure 0s.</p>
+  <p><strong>Visual Pattern (Replicate Padding):</strong> A central grid where the outermost numbers are duplicated outwards to form the border.</p>
+  <p><strong>Visual Pattern (Max Pooling):</strong> A $4 \times 4$ grid divided into four $2 \times 2$ colored quadrants. The highest number from each quadrant forms the new $2 \times 2$ output grid.</p>
+</div>
+
+<h2 id="vis-inception">7.4 The Inception Module (GoogLeNet)</h2>
+<div class="figure-container">
+  <img src="images/L13_p041.png" alt="The Inception Module" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+  <p><strong>Visual Pattern:</strong> A flowchart where an input splits into four parallel branches: a $1 \times 1$ conv, a $3 \times 3$ conv, a $5 \times 5$ conv, and a $3 \times 3$ max pool. These are then concatenated back together.</p>
+  <p><strong>Interpretation:</strong> The network doesn't have to choose a single filter size. It looks at the image simultaneously at multiple scales and concatenates the results. $1 \times 1$ convolutions (bottlenecks) are placed before the expensive $3 \times 3$ and $5 \times 5$ convolutions to drastically reduce the number of channels (dimensionality reduction), thereby saving FLOPs.</p>
+</div>
+
+<h2 id="vis-resnet">7.5 The Residual Block (ResNet)</h2>
+<div class="figure-container">
+  <img src="images/L15_p021.png" alt="The Residual Block" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+  <p><strong>Visual Pattern:</strong> Two "Weight Layers" inside a box, with a curved arrow looping around them from the input $x$ and adding to the output via a $\oplus$ symbol.</p>
+  <p><strong>Interpretation:</strong> This is the identity shortcut (skip connection). The block learns a residual mapping $\mathcal{F}(x)$. The final output is $\mathcal{H}(x) = \mathcal{F}(x) + x$. During backpropagation, the skip connection provides a "gradient highway" allowing the gradient to flow backwards uninterrupted, solving the vanishing gradient problem for ultra-deep networks.</p>
+</div>
+
+<h2 id="vis-unet">7.6 The U-Net Architecture</h2>
+<div class="figure-container">
+  <img src="images/L17_p053.png" alt="The U-Net Architecture" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+  <p><strong>Visual Pattern:</strong> A distinct "U" shape formed by a contracting downward path on the left and an expanding upward path on the right. Horizontal gray arrows bridge the left side to the right side.</p>
+  <p><strong>Interpretation:</strong> The horizontal arrows are <strong>Skip Connections</strong> via feature map concatenation (Copy and Crop). They provide high-resolution, un-pooled spatial features from the encoder directly to the decoder, allowing the network to assemble highly precise object boundaries despite the spatial loss of the downsampling path.</p>
+</div>
+
+<hr class="section-break">
+
+<!-- PART VIII: TABLES & COMPARISONS -->
+
+<h1 id="part-viii">Part VIII — Master Comparison Tables</h1>
+
+<p>Use these matrices to rapidly compare algorithms, architectures, and techniques.</p>
+
+<h2 id="tbl-architectures">8.1 CNN Architecture Evolution</h2>
+<table style="width: 100%; border-collapse: collapse; text-align: left;">
+  <thead>
+    <tr style="border-bottom: 2px solid #000;">
+      <th>Architecture</th>
+      <th>Key Innovation</th>
+      <th>Depth</th>
+      <th>Params</th>
+      <th>Drawback/Limitation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>LeNet-5 (1998)</strong></td>
+      <td>Pioneered CNN structure (Conv â†’ Pool â†’ FC).</td>
+      <td>7 layers</td>
+      <td>~60K</td>
+      <td>Too small for high-res images; uses Tanh (vanishing gradients).</td>
+    </tr>
+    <tr>
+      <td><strong>AlexNet (2012)</strong></td>
+      <td>Introduced ReLU, Dropout, multi-GPU training.</td>
+      <td>8 layers</td>
+      <td>~60M</td>
+      <td>Massive parameter count (especially in FC layers).</td>
+    </tr>
+    <tr>
+      <td><strong>VGG-16 (2014)</strong></td>
+      <td>Uniform $3 \times 3$ convs replacing large filters.</td>
+      <td>16 layers</td>
+      <td>~138M</td>
+      <td>Extremely computationally expensive; massive memory footprint.</td>
+    </tr>
+    <tr>
+      <td><strong>GoogLeNet (2014)</strong></td>
+      <td>Inception modules (multi-scale), no final FC layer.</td>
+      <td>22 layers</td>
+      <td>~5M</td>
+      <td>Complex to implement, auxiliary classifiers required to train.</td>
+    </tr>
+    <tr>
+      <td><strong>ResNet (2015)</strong></td>
+      <td>Residual skip connections ($F(x)+x$).</td>
+      <td>152+ layers</td>
+      <td>~25M</td>
+      <td>High memory usage during training (activations kept for addition).</td>
+    </tr>
+    <tr>
+      <td><strong>DenseNet (2017)</strong></td>
+      <td>Dense connectivity (concatenation from all prior).</td>
+      <td>121&rarr; layers</td>
+      <td>~8M</td>
+      <td>Feature map concatenation creates massive memory bandwidth overhead.</td>
+    </tr>
+    <tr>
+      <td><strong>MobileNet (2017)</strong></td>
+      <td>Depthwise separable convolutions.</td>
+      <td>28 layers</td>
+      <td>~4.2M</td>
+      <td>Trades some accuracy for extreme computational efficiency.</td>
+    </tr>
+    <tr>
+      <td><strong>EfficientNet (2019)</strong></td>
+      <td>Compound scaling (depth, width, resolution).</td>
+      <td>Varies (B0-B7)</td>
+      <td>5M-66M</td>
+      <td>Requires intensive grid search to find scaling constants $\alpha, \beta, \gamma$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tbl-conv">8.2 Types of Convolutions</h2>
+<table style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 2rem;">
+  <thead>
+    <tr style="border-bottom: 2px solid #000;">
+      <th>Convolution Type</th>
+      <th>Primary Use Case</th>
+      <th>Parameter Impact</th>
+      <th>Spatial Impact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Standard 2D</strong></td>
+      <td>General hierarchical feature extraction.</td>
+      <td>Baseline ($K^2 \cdot C_{in} \cdot C_{out}$)</td>
+      <td>Reduces without padding.</td>
+    </tr>
+    <tr>
+      <td><strong>Dilated (Atrous)</strong></td>
+      <td>Expanding RF without losing resolution (Semantic Seg).</td>
+      <td><strong>Zero increase</strong> (same as standard)</td>
+      <td>Massive RF expansion.</td>
+    </tr>
+    <tr>
+      <td><strong>Depthwise Separable</strong></td>
+      <td>Mobile/Edge deployment (MobileNet, Xception).</td>
+      <td><strong>~80-90% reduction</strong></td>
+      <td>Same as standard.</td>
+    </tr>
+    <tr>
+      <td><strong>Transpose</strong></td>
+      <td>Learnable Upsampling (Generative models, Decoders).</td>
+      <td>Same as standard.</td>
+      <td>Increases spatial resolution.</td>
+    </tr>
+    <tr>
+      <td><strong>Deformable</strong></td>
+      <td>Handling variable scale/rotation (Object Detection).</td>
+      <td>Adds offset parameters ($\Delta p$).</td>
+      <td>Dynamic spatial sampling grid.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tbl-upsampling">8.3 Upsampling Techniques</h2>
+<table style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 2rem;">
+  <thead>
+    <tr style="border-bottom: 2px solid #000;">
+      <th>Upsampling Method</th>
+      <th>Learnable?</th>
+      <th>Mechanism</th>
+      <th>Advantages / Disadvantages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Nearest Neighbor</strong></td>
+      <td>No</td>
+      <td>Duplicates pixels into $2 \times 2$ blocks.</td>
+      <td>Fastest. Creates blocky, pixelated artifacts.</td>
+    </tr>
+    <tr>
+      <td><strong>Bilinear Interpolation</strong></td>
+      <td>No</td>
+      <td>Averages 4 nearest neighbors via distance weights.</td>
+      <td>Smoother than NN, fast. Standard baseline for un-pooling.</td>
+    </tr>
+    <tr>
+      <td><strong>Bed of Nails</strong></td>
+      <td>No</td>
+      <td>Places value at top-left, fills rest of $2 \times 2$ with zeros.</td>
+      <td>Extremely sparse. Loses spatial distribution. Rarely used alone.</td>
+    </tr>
+    <tr>
+      <td><strong>Max Unpooling</strong></td>
+      <td>No</td>
+      <td>Restores value to recorded max-pool index from encoder.</td>
+      <td>Recovers precise spatial boundaries (Used in SegNet).</td>
+    </tr>
+    <tr>
+      <td><strong>Transpose Convolution</strong></td>
+      <td><strong>Yes</strong></td>
+      <td>Fractionally strided matrix multiplication $C^T \cdot I$.</td>
+      <td>Can learn complex spatial reconstructions. Creates checkerboard artifacts.</td>
+    </tr>
+  </tbody>
+</table>
+<!-- PART IX: GLOSSARY -->
+
+<h1 id="part-ix">Part IX — Complete Glossary</h1>
+
+<dl class="glossary">
+
+<dt id="gl-activation">Activation Function</dt>
+<dd>A non-linear function applied element-wise to the pre-activation \(\mathbf{a}_i\) to produce the post-activation \(\mathbf{h}_i = g(\mathbf{a}_i)\). Common types: Sigmoid, Tanh, ReLU. Introduces non-linearity enabling neural networks to learn complex mappings. <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-alexnet">AlexNet</dt>
+<dd>An 8-layer CNN architecture that won ILSVRC 2012. Key innovations: ReLU activation, Dropout (0.5), data augmentation, overlapping pooling. ~60M parameters. Trained on two GPUs. Input: 227×227×3. <em>Lectures 13–14.</em></dd>
+
+<dt id="gl-aspp">Atrous Spatial Pyramid Pooling (ASPP)</dt>
+<dd>A module in DeepLabv3+ that applies multiple parallel dilated convolutions with different dilation rates to capture multi-scale contextual information without increasing parameters. <em>Lectures 17–19.</em></dd>
+
+<dt id="gl-avgpool">Average Pooling</dt>
+<dd>A pooling operation that computes the arithmetic mean of all values within the pooling window. Preserves smooth intensity transitions but reduces discriminative feature sharpness compared to max pooling. Zero learnable parameters. <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-backprop">Backpropagation</dt>
+<dd>An algorithm for computing gradients of the loss function with respect to all network parameters using the chain rule of calculus, applied recursively from output to input layers. Forms the basis for training neural networks with gradient descent. <em>Lectures 3–7, 12.</em></dd>
+
+<dt id="gl-batchnorm">Batch Normalization</dt>
+<dd>Normalizes inputs across the batch and spatial dimensions per channel. Computes mini-batch mean \(\mu_B\) and variance \(\sigma_B^2\), normalizes, then applies learnable scale \(\gamma\) and shift \(\beta\). Addresses internal covariate shift, enables higher learning rates, and acts as implicit regularization. <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-bias">Bias</dt>
+<dd>An additive learnable parameter \(b\) in a neuron's pre-activation: \(z = \mathbf{w}^T\mathbf{x} + b\). Allows the decision boundary to shift away from the origin. Equivalent to \(w_0\) with constant input \(x_0 = 1\). <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-chainrule">Chain Rule</dt>
+<dd>The calculus rule for computing derivatives of composed functions: \(\frac{dz}{dx} = \frac{dz}{dy} \cdot \frac{dy}{dx}\). Extended to multivariate functions for backpropagation: \(\frac{\partial L}{\partial w} = \sum_k \frac{\partial L}{\partial z_k} \frac{\partial z_k}{\partial w}\). <em>Lectures 3–7, 12.</em></dd>
+
+<dt id="gl-cnn">Convolutional Neural Network (CNN)</dt>
+<dd>A neural network architecture that uses convolution operations with learnable filters to extract hierarchical spatial features from input data (typically images). Key advantage over fully connected networks: parameter sharing and translation equivariance. <em>Lectures 8–19.</em></dd>
+
+<dt id="gl-crossentropy">Cross-Entropy Loss</dt>
+<dd>Loss function for classification: \(\mathcal{L} = -\log(\hat{y}_l)\) where \(l\) is the true class index. Combined with softmax output layer. Gradient: \(\hat{y}_i - 1_{l=i}\). <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-deconv">Deconvolution</dt>
+<dd>See <strong>Transpose Convolution</strong>. Note: this term is technically a misnomer since transpose convolution does NOT invert a convolution. <em>Lectures 10–11.</em></dd>
+
+<dt id="gl-deeplabv3">DeepLabv3+</dt>
+<dd>A semantic segmentation architecture combining an encoder with atrous (dilated) convolutions and ASPP for multi-scale context, paired with a decoder for refined boundary recovery. Uses depthwise separable convolutions for efficiency. <em>Lectures 17–19.</em></dd>
+
+<dt id="gl-deformable">Deformable Convolution</dt>
+<dd>A convolution where the sampling grid positions are augmented with learnable 2D offsets \(\Delta p_n\): \(y(p_0) = \sum w(p_n) \cdot x(p_0 + p_n + \Delta p_n)\). Adapts to object shape, scale, and deformation. <em>Lectures 10–11.</em></dd>
+
+<dt id="gl-densenet">DenseNet</dt>
+<dd>Densely Connected Convolutional Network where each layer receives feature maps from ALL preceding layers. Uses transition layers between dense blocks. Benefits: feature reuse, fewer parameters, mitigated vanishing gradients. <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-depthwise">Depthwise Separable Convolution</dt>
+<dd><img src="images/L10_p015.png" alt="Depthwise Separable Convolution" style="max-width: 100%; border-radius: 8px; margin: 10px 0; display: block;">Factorized convolution: (1) depthwise convolution applies one spatial filter per input channel, then (2) pointwise 1×1 convolution mixes channels. Reduces parameters by factor of \(\sim\frac{1}{C_{out}} + \frac{1}{K^2}\). Core building block of MobileNet. <em>Lectures 10–11.</em></dd>
+
+<dt id="gl-dilated">Dilated Convolution (Atrous Convolution)</dt>
+<dd><img src="images/L10_p003.png" alt="Dilated Convolution" style="max-width: 100%; border-radius: 8px; margin: 10px 0; display: block;">Convolution with gaps (holes) between kernel elements, controlled by dilation rate \(d\). Effective kernel size: \(k' = d(k-1) + 1\). Expands receptive field without increasing parameters. Used in DeepLabv3+. <em>Lectures 10–11.</em></dd>
+
+<dt id="gl-dropout">Dropout</dt>
+<dd>Regularization technique that randomly sets a fraction of neuron activations to zero during training. Rate = probability of dropping a neuron (e.g., 0.5 in AlexNet). Prevents co-adaptation of neurons. <em>Lectures 13–14.</em></dd>
+
+<dt id="gl-efficientnet">EfficientNet</dt>
+<dd>CNN family using compound scaling: simultaneously scales depth \(d=\alpha^\phi\), width \(w=\beta^\phi\), resolution \(r=\gamma^\phi\) with constraint \(\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2\). Base building block: MBConv (inverted residual bottleneck). <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-encoder-decoder">Encoder-Decoder Architecture</dt>
+<dd>Network architecture with a contracting encoder path (downsampling for feature extraction) and an expanding decoder path (upsampling for spatial recovery). Used in semantic segmentation (SegNet, U-Net, DeepLab). <em>Lectures 17–19.</em></dd>
+
+<dt id="gl-ffnn">Feed-Forward Neural Network</dt>
+<dd>Neural network where connections do not form cycles. Data flows strictly input â†’ hidden layers â†’ output. Pre-activation: \(\mathbf{a}_i = \mathbf{W}_i\mathbf{h}_{i-1} + \mathbf{b}_i\). Post-activation: \(\mathbf{h}_i = g(\mathbf{a}_i)\). <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-flops">FLOPs (Floating Point Operations)</dt>
+<dd>A measure of computational cost. One multiply = 1 FLOP, one add = 1 FLOP. Conv layer: \(H_oW_oC_o(2K_hK_wC_i)\). FC layer: \(2N_{in}N_{out}\). In CNNs, conv layers dominate FLOPs (~90%) while FC layers dominate parameters (~99%). <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-googl">GoogLeNet / Inception v1</dt>
+<dd>Architecture using Inception modules with parallel convolution paths (1×1, 3×3, 5×5) for multi-scale feature extraction. Uses 1×1 convolutions for dimensionality reduction. Auxiliary classifiers combat vanishing gradients. ~5M parameters with 22 layers. <em>Lectures 13–14.</em></dd>
+
+<dt id="gl-gn">Group Normalization</dt>
+<dd>Normalizes over channels-per-group and spatial dimensions per sample. Divides \(C\) channels into \(G\) groups of \(C' = C/G\) channels each. Middle ground between Layer Norm and Instance Norm. Independent of batch size. <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-gd">Gradient Descent</dt>
+<dd>Optimization algorithm: \(\theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}\). Iteratively updates parameters in the direction of steepest descent of the loss function. Learning rate \(\eta\) controls step size. <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-in">Instance Normalization</dt>
+<dd>Normalizes over spatial dimensions (H, W) per channel per sample. Effective for style transfer. Statistics computed independently for each (sample, channel) pair. <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-lenet">LeNet-5</dt>
+<dd>Pioneering CNN (1990s) by LeCun et al. for digit recognition. Architecture: Input 32×32 â†’ Conv(6@5×5) â†’ AvgPool â†’ Conv(16@5×5) â†’ AvgPool â†’ FC(120) â†’ FC(84) â†’ Softmax(10). Used Tanh activation. <em>Lectures 13–14.</em></dd>
+
+<dt id="gl-ln">Layer Normalization</dt>
+<dd>Normalizes over all channels and spatial dimensions per individual sample. Independent of batch size. Computes statistics across (C, H, W) for each sample N independently. <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-ls">Linear Separability</dt>
+<dd>A dataset is linearly separable if there exists a hyperplane \(\mathbf{w}^T\mathbf{x} = 0\) that perfectly separates the two classes. Required for perceptron convergence. XOR is the canonical non-linearly-separable function. <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-maxpool">Max Pooling</dt>
+<dd>Pooling operation that selects the maximum value within each pooling window. Retains the most salient (strongest) features. Zero learnable parameters. Operates independently per channel. <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-maxunpool">Max Unpooling</dt>
+<dd>Upsampling method that uses stored "switch variables" (indices of max values from corresponding encoder max pooling layer) to place decoder values in their original positions, filling remaining positions with zeros. Used in SegNet. <em>Lectures 10–11, 17–19.</em></dd>
+
+<dt id="gl-mobilenet">MobileNet</dt>
+<dd>Lightweight CNN architecture using depthwise separable convolutions for mobile/embedded deployment. Uses width multiplier and resolution multiplier for further compression. <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-mp">McCulloch-Pitts (MP) Neuron</dt>
+<dd>Earliest model of an artificial neuron (1943). Binary inputs, fixed equal weights (all 1), fixed threshold \(\theta\). Output: 1 if sum â‰¥ \(\theta\), else 0. Can implement AND, OR, NOT but not XOR. <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-padding">Padding</dt>
+<dd>Adding border pixels around the input before convolution to control output spatial size. Zero padding: fills with 0s. Replicate padding: extends edge pixels. "Same" padding: \(P = (K-1)/2\) preserves spatial dimensions with stride 1. <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-perceptron">Perceptron</dt>
+<dd>Single-layer neural network for binary classification (Rosenblatt, 1958). Computes \(y = 1\) if \(\sum w_i x_i \geq 0\), else \(0\). Has learnable weights and threshold. Can only solve linearly separable problems. <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-pooling">Pooling</dt>
+<dd>Spatial downsampling operation applied per channel. Reduces spatial dimensions while preserving depth. Types: Max Pooling, Average Pooling. Has zero learnable parameters. Output formula uses same equation as conv but with pool window size. <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-rf">Receptive Field</dt>
+<dd>The region of the original input image that can influence a particular neuron's activation. Computed recursively: \(R_l = R_{l-1} + (K_l - 1) \cdot j_{l-1}\). Early layers: small RF (edges). Deep layers: large RF (objects). <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-relu">ReLU (Rectified Linear Unit)</dt>
+<dd>Activation function: \(f(x) = \max(0, x)\). Advantages: eliminates vanishing gradient for positive inputs, computationally efficient. Disadvantage: "dying ReLU" (negative inputs always produce 0 gradient). Introduced by AlexNet. <em>Lectures 13–14.</em></dd>
+
+<dt id="gl-resnet">ResNet (Residual Network)</dt>
+<dd>Architecture using skip/shortcut connections: output = \(F(x) + x\). Learns residual functions instead of complete mappings. Enables training of very deep networks (up to 152+ layers). Won ILSVRC 2015 (3.57% error). <em>Lectures 15–16.</em></dd>
+
+<dt id="gl-segnet">SegNet</dt>
+<dd>Encoder-decoder architecture for semantic segmentation. Encoder uses VGG-16 feature extraction with max pooling (stores pooling indices). Decoder uses max unpooling with stored indices for sparse upsampling, followed by learnable convolutions. <em>Lectures 17–19.</em></dd>
+
+<dt id="gl-sigmoid">Sigmoid Function</dt>
+<dd>\(\sigma(z) = \frac{1}{1+e^{-z}}\). Output âˆˆ (0,1). Derivative: \(\sigma'(z) = \sigma(z)(1-\sigma(z))\). Used in binary classification output layers and historically as hidden layer activation. Suffers from vanishing gradients for large |z|. <em>Lectures 3–7.</em></dd>
+
+<dt id="gl-skip">Skip Connection</dt>
+<dd>Direct connection bypassing one or more layers. In ResNet: additive skip (\(y = F(x) + x\)). In U-Net: concatenation skip (feature maps from encoder concatenated with decoder). In DenseNet: dense connectivity (concatenation from ALL prior layers). <em>Lectures 15–19.</em></dd>
+
+<dt id="gl-stride">Stride</dt>
+<dd>The step size of the filter as it slides across the input. Stride \(S > 1\) reduces output spatial size and increases effective receptive field growth rate. <em>Lectures 8–9.</em></dd>
+
+<dt id="gl-transpose">Transpose Convolution</dt>
+<dd>Learnable upsampling operation. Computed as matrix multiplication \(Y = C^T \cdot I\) where \(C\) is the convolution kernel matrix. Output dimension: \(H_{out} = (H_{in}-1)s - 2p + K + p_{out}\). Does NOT invert convolution (common misconception). <em>Lectures 10–11.</em></dd>
+
+<dt id="gl-unet">U-Net</dt>
+<dd>Encoder-decoder architecture with skip connections that concatenate (copy-and-crop) feature maps from encoder to decoder at each resolution level. Designed for biomedical image segmentation with limited training data. Enables precise localization with context. <em>Lectures 17–19.</em></dd>
+
+<dt id="gl-vgg">VGG-16</dt>
+<dd>16-layer CNN using uniform 3×3 convolutions stacked to achieve large receptive fields. Key insight: two 3×3 conv = one 5×5 RF with fewer parameters and more non-linearity. ~138M parameters. <em>Lectures 13–14.</em></dd>
+
+</dl>
+
+<hr class="section-break">
+
+<!-- PART X: EXAM REVISION CHECKLIST -->
+
+<h1 id="part-x">Part X — Exam Revision Checklist</h1>
+
+<h2>Must-Know Topics (Highest Priority)</h2>
+<ul class="revision-checklist">
+  <li class="must-know">Perceptron Learning Algorithm — be able to write the pseudocode and explain each step</li>
+  <li class="must-know">Convergence Proof — numerator grows as \(k\delta\), denominator as \(\sqrt{k}\), cos Î² bounded by 1</li>
+  <li class="must-know">Backpropagation worked example — forward pass, error, backward pass with exact numerical values</li>
+  <li class="must-know">Conv output dimension formula: \(O = \lfloor(I - K + 2P)/S\rfloor + 1\)</li>
+  <li class="must-know">Parameter counting for conv layers: \((K^2 \cdot C_{in} + 1) \times C_{out}\)</li>
+  <li class="must-know">Receptive field recursive formula with worked examples</li>
+  <li class="must-know">FLOPs calculation: Conv = \(H_oW_oC_o(2K_hK_wC_i)\), FC = \(2N_{in}N_{out}\)</li>
+  <li class="must-know">Max Pooling vs Average Pooling — numerical example and output computation</li>
+  <li class="must-know">Batch Normalization complete formula with \(\gamma, \beta\) parameters</li>
+  <li class="must-know">ResNet skip connection principle and why it works</li>
+</ul>
+
+<h2>High Priority Topics</h2>
+<ul class="revision-checklist">
+  <li class="high">XOR impossibility proof — the four-inequality contradiction</li>
+  <li class="high">Boolean function capacity: \(2^{2^n}\) functions for \(n\) inputs</li>
+  <li class="high">Sigmoid function, its derivative, and why it replaced step function</li>
+  <li class="high">Network of perceptrons theorem: \(2^n + 1\) perceptrons sufficient for any Boolean function</li>
+  <li class="high">Dilated convolution — effective kernel size formula: \(k' = d(k-1) + 1\)</li>
+  <li class="high">Depthwise separable conv — parameter savings vs standard conv</li>
+  <li class="high">Transpose convolution — matrix formulation and output dimension</li>
+  <li class="high">All normalization types: Batch, Layer, Instance, Group — what dimensions they normalize over</li>
+  <li class="high">LeNet-5 â†’ AlexNet â†’ VGG â†’ GoogLeNet â†’ ResNet evolution story</li>
+  <li class="high">EfficientNet compound scaling formula</li>
+  <li class="high">SegNet vs U-Net vs DeepLabv3+ — key architectural differences</li>
+  <li class="high">Parameters vs FLOPs distribution (FC=99% params, Conv=90% FLOPs)</li>
+</ul>
+
+<h2>Important Topics</h2>
+<ul class="revision-checklist">
+  <li class="important">CV paradigms: physics-based, geometry-based, learning-based</li>
+  <li class="important">Core CV subtasks: segmentation, detection, recognition, tracking, captioning</li>
+  <li class="important">What makes computer vision hard: inverse problem, viewpoint, illumination, occlusion, etc.</li>
+  <li class="important">Limitations of ANNs for images: parameter explosion, no translation invariance</li>
+  <li class="important">Upsampling techniques: nearest neighbor, bilinear, bed of nails, max unpooling</li>
+  <li class="important">Deformable convolution with learned offsets</li>
+  <li class="important">DenseNet — dense connectivity and transition layers</li>
+  <li class="important">MobileNet — depth-wise separable building block</li>
+  <li class="important">Zero padding vs replicate padding — advantages/disadvantages</li>
+  <li class="important">Forward vs backward mapping in upsampling</li>
+  <li class="important">Inception module — parallel multi-scale processing</li>
+  <li class="important">CNN backpropagation — convolution equivalence in backward pass</li>
+</ul>
+
+<h2>Quick Recall: Key Numbers</h2>
+<table>
+  <thead>
+    <tr><th>Item</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>AlexNet parameters</td><td>~60 million</td></tr>
+    <tr><td>VGG-16 parameters</td><td>~138 million</td></tr>
+    <tr><td>GoogLeNet parameters</td><td>~5 million</td></tr>
+    <tr><td>Perceptron worked example (OR): \(w_0, w_1, w_2\)</td><td>\(-1, 1.1, 1.1\)</td></tr>
+    <tr><td>Backprop worked example: \(E_{total}\)</td><td>0.3037</td></tr>
+    <tr><td>Backprop worked example: \(\partial E/\partial w_5\)</td><td>0.0815</td></tr>
+    <tr><td>LeNet-5 input size</td><td>32 × 32 × 1</td></tr>
+    <tr><td>AlexNet input size</td><td>227 × 227 × 3</td></tr>
+    <tr><td>Benchmark CNN: FC layer share of parameters</td><td>99.02%</td></tr>
+    <tr><td>Benchmark CNN: Conv layer share of FLOPs</td><td>90.40%</td></tr>
+    <tr><td>Boolean functions for n inputs</td><td>\(2^{2^n}\)</td></tr>
+    <tr><td>MLP perceptrons sufficient for any Boolean function of n inputs</td><td>\(2^n + 1\)</td></tr>
+  </tbody>
+</table>
+
+<h2>Formulas to Memorize (Write Out 3 Times Each)</h2>
+<ol>
+  <li>Conv output dimension: \(O = \lfloor(I - K + 2P)/S\rfloor + 1\)</li>
+  <li>Conv parameters: \((K^2 C_{in} + 1) \times C_{out}\)</li>
+  <li>Receptive field: \(R_l = R_{l-1} + (K_l - 1) \cdot j_{l-1}\)</li>
+  <li>Effective jump: \(j_l = j_{l-1} \cdot S_l\)</li>
+  <li>Conv FLOPs: \(H_oW_oC_o(2K_hK_wC_i)\)</li>
+  <li>FC FLOPs: \(2N_{in}N_{out}\)</li>
+  <li>Same padding: \(P = (K-1)/2\)</li>
+  <li>Batch Norm: \(\hat{x}_t = \frac{x_t - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}\), \(y_t = \gamma\hat{x}_t + \beta\)</li>
+  <li>Sigmoid: \(\sigma(z) = \frac{1}{1+e^{-z}}\), derivative: \(\sigma'(z) = \sigma(z)(1-\sigma(z))\)</li>
+  <li>Cross-entropy: \(\mathcal{L} = -\log(\hat{y}_l)\)</li>
+  <li>Dilated kernel size: \(k' = d(k-1) + 1\)</li>
+  <li>Depthwise separable savings: \(\frac{1}{C_{out}} + \frac{1}{K^2}\)</li>
+  <li>EfficientNet: \(d=\alpha^\phi, w=\beta^\phi, r=\gamma^\phi, \alpha\beta^2\gamma^2 \approx 2\)</li>
+</ol>
+
+<hr class="section-break">
+
+<div class="text-center text-muted" style="margin-top: 3rem; padding: 2rem;">
+  <p><strong>End of DA6021 Examination Handbook</strong></p>
+  <p>Course Instructor: Dr. Prashant W. Patil | IIT Guwahati</p>
+  <p><em>Study well and ace your exam! ðŸŽ“</em></p>
+</div>
+</body></html>
