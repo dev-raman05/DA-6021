@@ -113,15 +113,15 @@ window.MathJax = {
 <h3>Concept Dependency Chain</h3>
 <p>Understanding flows in this order — each topic builds on the previous:</p>
 <ol>
-  <li><strong>Linear Algebra & Geometry</strong> â†’ Perceptron decision boundaries</li>
-  <li><strong>Perceptron & Convergence</strong> â†’ Why sigmoid neurons and MLPs are needed</li>
-  <li><strong>Gradient Descent & Chain Rule</strong> â†’ Backpropagation algorithm</li>
-  <li><strong>Backpropagation</strong> â†’ Training CNNs end-to-end</li>
-  <li><strong>2D Convolution basics</strong> â†’ Receptive fields â†’ Types of convolutions</li>
-  <li><strong>Vanishing gradients (Backprop issue)</strong> â†’ Normalization techniques â†’ ResNet skip connections</li>
-  <li><strong>Computational complexity</strong> â†’ Efficient architectures (MobileNet, EfficientNet)</li>
-  <li><strong>Convolution &rarr; Pooling (downsampling)</strong> â†’ Spatial information loss â†’ Encoder-Decoder architectures</li>
-  <li><strong>Upsampling techniques</strong> â†’ SegNet (max unpooling), U-Net (skip connections), DeepLab (ASPP)</li>
+  <li><strong>Linear Algebra & Geometry</strong> → Perceptron decision boundaries</li>
+  <li><strong>Perceptron & Convergence</strong> → Why sigmoid neurons and MLPs are needed</li>
+  <li><strong>Gradient Descent & Chain Rule</strong> → Backpropagation algorithm</li>
+  <li><strong>Backpropagation</strong> → Training CNNs end-to-end</li>
+  <li><strong>2D Convolution basics</strong> → Receptive fields → Types of convolutions</li>
+  <li><strong>Vanishing gradients (Backprop issue)</strong> → Normalization techniques → ResNet skip connections</li>
+  <li><strong>Computational complexity</strong> → Efficient architectures (MobileNet, EfficientNet)</li>
+  <li><strong>Convolution &rarr; Pooling (downsampling)</strong> → Spatial information loss → Encoder-Decoder architectures</li>
+  <li><strong>Upsampling techniques</strong> → SegNet (max unpooling), U-Net (skip connections), DeepLab (ASPP)</li>
 </ol>
 <h1>Part I: Foundations of Neural Networks</h1>
 
@@ -1083,7 +1083,7 @@ Employs Atrous Spatial Pyramid Pooling (ASPP) to capture multi-scale context usi
   <p class="formula-equation">$$\text{Params}_{DW+PW} = \underbrace{(K^2 \times 1 \times C_{in} + C_{in})}_{\text{Depthwise}} + \underbrace{(1 \times 1 \times C_{in} \times C_{out} + C_{out})}_{\text{Pointwise}}$$</p>
   <div class="formula-where">
     <p><strong>Computational savings ratio:</strong> \(\frac{1}{C_{out}} + \frac{1}{K^2}\)</p>
-    <p><strong>Example:</strong> For \(K=3, C_{out}=10\): ratio â‰ˆ 0.21 (i.e., ~79% fewer operations)</p>
+    <p><strong>Example:</strong> For \(K=3, C_{out}=10\): ratio ≈ 0.21 (i.e., ~79% fewer operations)</p>
   </div>
 </div>
 
@@ -1597,7 +1597,7 @@ $$</p>
   <tbody>
     <tr>
       <td><strong>LeNet-5 (1998)</strong></td>
-      <td>Pioneered CNN structure (Conv â†’ Pool â†’ FC).</td>
+      <td>Pioneered CNN structure (Conv → Pool → FC).</td>
       <td>7 layers</td>
       <td>~60K</td>
       <td>Too small for high-res images; uses Tanh (vanishing gradients).</td>
@@ -1805,7 +1805,7 @@ $$</p>
 <dd>Network architecture with a contracting encoder path (downsampling for feature extraction) and an expanding decoder path (upsampling for spatial recovery). Used in semantic segmentation (SegNet, U-Net, DeepLab). <em>Lectures 17–19.</em></dd>
 
 <dt id="gl-ffnn">Feed-Forward Neural Network</dt>
-<dd>Neural network where connections do not form cycles. Data flows strictly input â†’ hidden layers â†’ output. Pre-activation: \(\mathbf{a}_i = \mathbf{W}_i\mathbf{h}_{i-1} + \mathbf{b}_i\). Post-activation: \(\mathbf{h}_i = g(\mathbf{a}_i)\). <em>Lectures 3–7.</em></dd>
+<dd>Neural network where connections do not form cycles. Data flows strictly input → hidden layers → output. Pre-activation: \(\mathbf{a}_i = \mathbf{W}_i\mathbf{h}_{i-1} + \mathbf{b}_i\). Post-activation: \(\mathbf{h}_i = g(\mathbf{a}_i)\). <em>Lectures 3–7.</em></dd>
 
 <dt id="gl-flops">FLOPs (Floating Point Operations)</dt>
 <dd>A measure of computational cost. One multiply = 1 FLOP, one add = 1 FLOP. Conv layer: \(H_oW_oC_o(2K_hK_wC_i)\). FC layer: \(2N_{in}N_{out}\). In CNNs, conv layers dominate FLOPs (~90%) while FC layers dominate parameters (~99%). <em>Lectures 8–9.</em></dd>
@@ -1823,7 +1823,7 @@ $$</p>
 <dd>Normalizes over spatial dimensions (H, W) per channel per sample. Effective for style transfer. Statistics computed independently for each (sample, channel) pair. <em>Lectures 15–16.</em></dd>
 
 <dt id="gl-lenet">LeNet-5</dt>
-<dd>Pioneering CNN (1990s) by LeCun et al. for digit recognition. Architecture: Input 32×32 â†’ Conv(6@5×5) â†’ AvgPool â†’ Conv(16@5×5) â†’ AvgPool â†’ FC(120) â†’ FC(84) â†’ Softmax(10). Used Tanh activation. <em>Lectures 13–14.</em></dd>
+<dd>Pioneering CNN (1990s) by LeCun et al. for digit recognition. Architecture: Input 32×32 → Conv(6@5×5) → AvgPool → Conv(16@5×5) → AvgPool → FC(120) → FC(84) → Softmax(10). Used Tanh activation. <em>Lectures 13–14.</em></dd>
 
 <dt id="gl-ln">Layer Normalization</dt>
 <dd>Normalizes over all channels and spatial dimensions per individual sample. Independent of batch size. Computes statistics across (C, H, W) for each sample N independently. <em>Lectures 15–16.</em></dd>
@@ -1841,7 +1841,7 @@ $$</p>
 <dd>Lightweight CNN architecture using depthwise separable convolutions for mobile/embedded deployment. Uses width multiplier and resolution multiplier for further compression. <em>Lectures 15–16.</em></dd>
 
 <dt id="gl-mp">McCulloch-Pitts (MP) Neuron</dt>
-<dd>Earliest model of an artificial neuron (1943). Binary inputs, fixed equal weights (all 1), fixed threshold \(\theta\). Output: 1 if sum â‰¥ \(\theta\), else 0. Can implement AND, OR, NOT but not XOR. <em>Lectures 3–7.</em></dd>
+<dd>Earliest model of an artificial neuron (1943). Binary inputs, fixed equal weights (all 1), fixed threshold \(\theta\). Output: 1 if sum ≥ \(\theta\), else 0. Can implement AND, OR, NOT but not XOR. <em>Lectures 3–7.</em></dd>
 
 <dt id="gl-padding">Padding</dt>
 <dd>Adding border pixels around the input before convolution to control output spatial size. Zero padding: fills with 0s. Replicate padding: extends edge pixels. "Same" padding: \(P = (K-1)/2\) preserves spatial dimensions with stride 1. <em>Lectures 8–9.</em></dd>
@@ -1865,7 +1865,7 @@ $$</p>
 <dd>Encoder-decoder architecture for semantic segmentation. Encoder uses VGG-16 feature extraction with max pooling (stores pooling indices). Decoder uses max unpooling with stored indices for sparse upsampling, followed by learnable convolutions. <em>Lectures 17–19.</em></dd>
 
 <dt id="gl-sigmoid">Sigmoid Function</dt>
-<dd>\(\sigma(z) = \frac{1}{1+e^{-z}}\). Output âˆˆ (0,1). Derivative: \(\sigma'(z) = \sigma(z)(1-\sigma(z))\). Used in binary classification output layers and historically as hidden layer activation. Suffers from vanishing gradients for large |z|. <em>Lectures 3–7.</em></dd>
+<dd>\(\sigma(z) = \frac{1}{1+e^{-z}}\). Output ∈ (0,1). Derivative: \(\sigma'(z) = \sigma(z)(1-\sigma(z))\). Used in binary classification output layers and historically as hidden layer activation. Suffers from vanishing gradients for large |z|. <em>Lectures 3–7.</em></dd>
 
 <dt id="gl-skip">Skip Connection</dt>
 <dd>Direct connection bypassing one or more layers. In ResNet: additive skip (\(y = F(x) + x\)). In U-Net: concatenation skip (feature maps from encoder concatenated with decoder). In DenseNet: dense connectivity (concatenation from ALL prior layers). <em>Lectures 15–19.</em></dd>
@@ -1893,7 +1893,7 @@ $$</p>
 <h2>Must-Know Topics (Highest Priority)</h2>
 <ul class="revision-checklist">
   <li class="must-know">Perceptron Learning Algorithm — be able to write the pseudocode and explain each step</li>
-  <li class="must-know">Convergence Proof — numerator grows as \(k\delta\), denominator as \(\sqrt{k}\), cos Î² bounded by 1</li>
+  <li class="must-know">Convergence Proof — numerator grows as \(k\delta\), denominator as \(\sqrt{k}\), cos β bounded by 1</li>
   <li class="must-know">Backpropagation worked example — forward pass, error, backward pass with exact numerical values</li>
   <li class="must-know">Conv output dimension formula: \(O = \lfloor(I - K + 2P)/S\rfloor + 1\)</li>
   <li class="must-know">Parameter counting for conv layers: \((K^2 \cdot C_{in} + 1) \times C_{out}\)</li>
@@ -1914,7 +1914,7 @@ $$</p>
   <li class="high">Depthwise separable conv — parameter savings vs standard conv</li>
   <li class="high">Transpose convolution — matrix formulation and output dimension</li>
   <li class="high">All normalization types: Batch, Layer, Instance, Group — what dimensions they normalize over</li>
-  <li class="high">LeNet-5 â†’ AlexNet â†’ VGG â†’ GoogLeNet â†’ ResNet evolution story</li>
+  <li class="high">LeNet-5 → AlexNet → VGG → GoogLeNet → ResNet evolution story</li>
   <li class="high">EfficientNet compound scaling formula</li>
   <li class="high">SegNet vs U-Net vs DeepLabv3+ — key architectural differences</li>
   <li class="high">Parameters vs FLOPs distribution (FC=99% params, Conv=90% FLOPs)</li>
@@ -1979,6 +1979,6 @@ $$</p>
 <div class="text-center text-muted" style="margin-top: 3rem; padding: 2rem;">
   <p><strong>End of DA6021 Examination Handbook</strong></p>
   <p>Course Instructor: Dr. Prashant W. Patil | IIT Guwahati</p>
-  <p><em>Study well and ace your exam! ðŸŽ“</em></p>
+  <p><em>Study well and ace your exam! 🎓</em></p>
 </div>
 </body></html>
